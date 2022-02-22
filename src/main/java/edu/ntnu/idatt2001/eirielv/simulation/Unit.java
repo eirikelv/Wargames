@@ -18,11 +18,16 @@ public abstract class Unit {
      * @param attack The int attack represents the units weapon
      * @param armor The int armor is a defence value that protects the unit under attack
      */
-    public Unit(String name, int health, int attack, int armor) {
+    public Unit(String name, int health, int attack, int armor) throws IllegalArgumentException{
         this.name = name;
+            if(this.name.isBlank()) throw new IllegalArgumentException("You need to type inn a name");
         this.health = health;
+            if(this.health < 0) throw new IllegalArgumentException("Health is lower than 0, not valid");
         this.attack = attack;
+            if(this.attack < 0) throw new IllegalArgumentException("Attack value is lower than 0, not valid");
         this.armor = armor;
+            if(this.armor < 0) throw new IllegalArgumentException("Armor value is lower than 0, not valid");
+
     }
 
     /**
