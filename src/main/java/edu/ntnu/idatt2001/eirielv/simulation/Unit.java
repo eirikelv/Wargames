@@ -20,7 +20,8 @@ public abstract class Unit {
      */
     public Unit(String name, int health, int attack, int armor) throws IllegalArgumentException{
         this.name = name;
-            if(this.name.isBlank()) throw new IllegalArgumentException("You need to type inn a name");
+            if(this.name.isBlank()) throw new IllegalArgumentException("You need to type in a name");
+            if(this.name.isEmpty()) throw new IllegalArgumentException("You need to type in a name");
         this.health = health;
             if(this.health < 0) throw new IllegalArgumentException("Health is lower than 0, not valid");
         this.attack = attack;
