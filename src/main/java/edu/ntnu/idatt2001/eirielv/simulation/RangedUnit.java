@@ -11,7 +11,7 @@ public class RangedUnit extends Unit{
 
 
     /**
-     * This is the constructor for the RangedUnit class that defines how a unit should look and its variables
+     * This is the constructor for the RangedUnit class that defines how a ranged unit should look and its variables
      * @param name   The String name is a short descriptive name of the ranged unit
      * @param health The int health is a value that describes the ranged unit's health
      * @param attack The int attack represents the units weapon
@@ -22,7 +22,7 @@ public class RangedUnit extends Unit{
     }
 
     /**
-     *This is the construktør for RangedUnit with set variables attack = 15 and armor = 8. This constructor will be used
+     *This is the constructor for RangedUnit with set variables attack = 15 and armor = 8. This constructor will be used
      * to call RangedUnit with set values
      * @param name Ths String name is a short descriptive name of the ranged unit
      * @param health The int healt is the value that describes the reanged unit's health
