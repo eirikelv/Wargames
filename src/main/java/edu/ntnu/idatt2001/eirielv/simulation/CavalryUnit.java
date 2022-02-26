@@ -32,7 +32,7 @@ public class CavalryUnit extends Unit{
     /**
      * {@inheritDoc}
      * The cavalry unit has an advantage because it has extra damage with first attack, and because of that, the cavalry
-     * unit gets 6 in attack bonus with the first attack. After that the attackbonus equals 2.
+     * unit gets 6 in attack bonus with the first attack. After that the attackbonus equals 2
      * attack bonus to illustrate this
      * @return Returns the attack bonus to the cavalry unit
      */
@@ -41,7 +41,7 @@ public class CavalryUnit extends Unit{
         int attackBonus = 2;
         if(attackedCount < 1) attackBonus = 6;
 
-        attackedCount ++;
+        this.attackedCount +=1;
         return attackBonus;
     }
 
