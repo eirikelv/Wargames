@@ -148,10 +148,10 @@ public class InfantryUnitTest {
             //arrange
             InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
             //act
-            int expectedAttackBonus = 1;
-            int attackBonus = infantryUnit.getAttackBonus();
+            int expectedResistBonus = 1;
+            int resistBonus = infantryUnit.getResistBonus();
             //assert
-            assertEquals(expectedAttackBonus,attackBonus);
+            assertEquals(expectedResistBonus,resistBonus);
         }
 
     }
