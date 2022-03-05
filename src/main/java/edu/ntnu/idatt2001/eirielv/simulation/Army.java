@@ -17,8 +17,10 @@ public class Army {
      * This is a constructor for the army class where the units ar not implemented and need to be made from scratch
      * @param name
      */
-    public Army(String name) {
+    public Army(String name) throws IllegalArgumentException{
         this.name = name;
+        if(name.isBlank()) throw new IllegalArgumentException("Name cant't be blank");
+        if(name.isEmpty()) throw new IllegalArgumentException("Name can't be empty");
         this.units = new ArrayList<Unit>();
     }
 
@@ -28,8 +30,10 @@ public class Army {
      * @param name
      * @param units
      */
-    public Army(String name, List<Unit> units) {
+    public Army(String name, List<Unit> units) throws IllegalArgumentException{
         this.name = name;
+        if(name.isBlank()) throw new IllegalArgumentException("Name cant't be blank");
+        if(name.isEmpty()) throw new IllegalArgumentException("Name can't be empty");
         this.units = units;
     }
 
