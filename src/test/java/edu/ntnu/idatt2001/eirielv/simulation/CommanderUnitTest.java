@@ -154,17 +154,15 @@ public class CommanderUnitTest {
         }
     }
 
-    @Nested
-    class getResistbonus_gives_expected_values {
-        @Test
-        public void resistBonus_equals_1() {
-            //arrange
-            CommanderUnit commanderUnit = new CommanderUnit("Commander", 100);
-            //act
-            int expectedResistanceBonus = 1;
-            int resistanceBonus = commanderUnit.getResistBonus();
-            //assert
-            assertEquals(expectedResistanceBonus, resistanceBonus);
-        }
+    @Test
+    public void getResistbonus_gives_expected_values_resistBonus_equals_1() {
+        //arrange
+        CommanderUnit commanderUnit = new CommanderUnit("Commander", 100);
+        //act
+        int expectedResistanceBonus = 1;
+        int resistanceBonus = commanderUnit.getResistBonus();
+        //assert
+        assertEquals(expectedResistanceBonus, resistanceBonus);
     }
+
 }
