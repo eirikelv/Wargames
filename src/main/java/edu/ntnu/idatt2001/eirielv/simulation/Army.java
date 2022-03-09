@@ -84,7 +84,7 @@ public class Army {
      * @return Returns true if units has units inside the list, and returns false if not
      */
     public boolean hasUnits(){
-        return units != null;
+        return units.size() != 0;
     }
 
     /**
@@ -127,4 +127,10 @@ public class Army {
     public int hashCode() {
         return Objects.hash(name, units);
     }
+
+    @Override
+    public String toString() {
+        return name + units;
+    }
 }
+
