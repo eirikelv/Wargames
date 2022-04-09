@@ -1,6 +1,8 @@
 package edu.ntnu.idatt2001.eirielv.simulation;
 
+import edu.ntnu.idatt2001.eirielv.Units.*;
 import org.junit.jupiter.api.Test;
+
 
 import java.util.ArrayList;
 import java.util.List;
