@@ -1,4 +1,7 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package edu.ntnu.idatt2001.eirielv.Units;
+
+
+
 
 /**
  * The CommanderUnit extends CavalryUnit, and uses the same bonuses ass the cavalry unit. The CommanderUnit class

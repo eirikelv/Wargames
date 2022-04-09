@@ -1,4 +1,7 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package edu.ntnu.idatt2001.eirielv.Units;
+
+import edu.ntnu.idatt2001.eirielv.simulation.Unit;
+
 
 /**
  * InfantryUnit klass represents the infantry unit. The infantry unit has melee attack.

@@ -1,10 +1,12 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package edu.ntnu.idatt2001.eirielv.Units;
+
+import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 
 /**
  * CavalryUnit klass represents the cavalry unit. The cavalry unit has a charge attack and melee attack.
  * @author Eirik Elvestad
  */
-public class CavalryUnit extends Unit{
+public class CavalryUnit extends Unit {
 
     private int attackedCount = 0; // how many times the unit has been attacked
 

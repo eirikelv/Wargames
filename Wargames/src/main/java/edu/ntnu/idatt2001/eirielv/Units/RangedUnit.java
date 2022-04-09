@@ -1,11 +1,14 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package edu.ntnu.idatt2001.eirielv.Units;
+
+import edu.ntnu.idatt2001.eirielv.simulation.Unit;
+
 
 /**
  * Range Unit class represents the ranged unit. The ranged unit can attack from distance and has a resistbonus when
  * attacked
  * @author Eirik Elvestad
  */
-public class RangedUnit extends Unit{
+public class RangedUnit extends Unit {
 
     private int attackedCount = 0; // how many times the unit has been attacked
 
