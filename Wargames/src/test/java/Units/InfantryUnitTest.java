@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package Units;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -6,43 +6,43 @@ import static org.junit.jupiter.api.Assertions.*;
 import edu.ntnu.idatt2001.eirielv.Units.*;
 
 
-public class CavalryUnitTest {
+public class InfantryUnitTest {
 
     @Nested
     class the_manual_constructor_gets_expected_values {
         @Test
         public void name_is_a_expected_value() {
             //arrange
-            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100, 20, 12);
-            String expected_name = "Cavalry";
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, 15, 10);
+            String expected_name = "Knight";
             //act
 
             //assert
-            assertEquals(expected_name, cavalryUnit.getName());
+            assertEquals(expected_name, infantryUnit.getName());
         }
 
         @Test
         public void health_is_a_expected_value() {
             //arrange
-            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100, 20, 12);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, 15, 10);
             //assert
-            assertEquals(100, cavalryUnit.getHealth());
+            assertEquals(100, infantryUnit.getHealth());
         }
 
         @Test
         public void attack_is_a_expected_value() {
             //arrange
-            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100, 20, 12);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, 15, 10);
             //assert
-            assertEquals(20, cavalryUnit.getAttack());
+            assertEquals(15, infantryUnit.getAttack());
         }
 
         @Test
         public void armor_is_a_expected_value() {
             //arrange
-            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100, 20, 12);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, 15, 10);
             //assert
-            assertEquals(12, cavalryUnit.getArmor());
+            assertEquals(10, infantryUnit.getArmor());
         }
     }
 
@@ -51,17 +51,17 @@ public class CavalryUnitTest {
         @Test
         public void name_is_a_expected_value(){
             //arrange
-            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
             //assert
-            assertEquals("Cavalry", cavalryUnit.getName());
+            assertEquals("Knight", infantryUnit.getName());
         }
 
         @Test
         public void health_is_a_expected_value() {
             //arrange
-            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
             //assert
-            assertEquals(100, cavalryUnit.getHealth());
+            assertEquals(100, infantryUnit.getHealth());
         }
     }
 
@@ -72,7 +72,7 @@ public class CavalryUnitTest {
         public void name_is_empty(){
             try {
                 //arrange
-                CavalryUnit cavalryUnit = new CavalryUnit("", 100);
+                InfantryUnit infantryUnit = new InfantryUnit("", 100);
                 //act
             } catch (IllegalArgumentException e){
                 //assert
@@ -84,7 +84,7 @@ public class CavalryUnitTest {
         public void name_is_blank(){
             try {
                 //arrange
-                CavalryUnit cavalryUnit = new CavalryUnit(" ", 100);
+                InfantryUnit infantryUnit = new InfantryUnit(" ", 100);
                 //act
             } catch (IllegalArgumentException e){
                 //assert
@@ -96,7 +96,7 @@ public class CavalryUnitTest {
         public void health_is_lower_than_0(){
             try {
                 //arrange
-                CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", -1);
+                InfantryUnit infantryUnit = new InfantryUnit("Knight", -1);
                 //act
             } catch (IllegalArgumentException e){
                 //assert
@@ -108,7 +108,7 @@ public class CavalryUnitTest {
         public void attack_is_negative(){
             try {
                 //arrange
-                CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100, -1, 12);
+                InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, -1, 10);
                 //act
             } catch(IllegalArgumentException e) {
                 //assort
@@ -120,7 +120,7 @@ public class CavalryUnitTest {
         public void armor_is_negative(){
             try {
                 //arrange
-                CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100, 20, -1);
+                InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, 15, -1);
                 //act
             } catch(IllegalArgumentException e) {
                 //assort
@@ -130,43 +130,31 @@ public class CavalryUnitTest {
     }
 
     @Nested
-    class getAttackbonus_gives_expected_values {
+    class getAttackbonus_gives_expected_values{
         @Test
-        public void attackBonus_is_6_with_first_attack() {
+        public void attackBonus_is_2(){
             //arrange
-            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
-            //act
-            int expectedAttackBonus = 6;
-            int attackBonus = cavalryUnit.getAttackBonus();
-            //assert
-            assertEquals(expectedAttackBonus, attackBonus);
-        }
-
-
-        @Test
-        public void attackBonus_is_2_after_first_attack() {
-            //arrange
-            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
             //act
             int expectedAttackBonus = 2;
-            cavalryUnit.getAttackBonus();
-            int attackBonus = cavalryUnit.getAttackBonus();
+            int attackBonus = infantryUnit.getAttackBonus();
             //assert
-            assertEquals(expectedAttackBonus, attackBonus);
+            assertEquals(expectedAttackBonus,attackBonus);
         }
     }
 
     @Nested
     class getResistbonus_gives_expected_values {
         @Test
-        public void resistBonus_equals_1() {
+        public void resistBonus_is_1(){
             //arrange
-            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
             //act
-            int expectedResistanceBonus = 1;
-            int resistanceBonus = cavalryUnit.getResistBonus();
+            int expectedResistBonus = 1;
+            int resistBonus = infantryUnit.getResistBonus();
             //assert
-            assertEquals(expectedResistanceBonus, resistanceBonus);
+            assertEquals(expectedResistBonus,resistBonus);
         }
+
     }
 }

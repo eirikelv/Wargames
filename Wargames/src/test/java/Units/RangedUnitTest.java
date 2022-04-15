@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package Units;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

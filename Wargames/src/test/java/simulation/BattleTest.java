@@ -1,6 +1,9 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package simulation;
 
 import edu.ntnu.idatt2001.eirielv.Units.*;
+import edu.ntnu.idatt2001.eirielv.simulation.Army;
+import edu.ntnu.idatt2001.eirielv.simulation.Battle;
+import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 import org.junit.jupiter.api.Test;
 
 
