@@ -1,7 +1,9 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package simulation;
 
 import edu.ntnu.idatt2001.eirielv.Units.*;
 
+import edu.ntnu.idatt2001.eirielv.simulation.Army;
+import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -170,7 +172,115 @@ class ArmyTest {
 
     }
 
-    @Test
+    @Nested
+    class getters_returns_expected_information {
+
+        @Test
+        public void getInfantryUnit_returns_expected_information() {
+            Army armyOne = new Army("armyOne");
+            Army armyTwo = new Army("armyTwo");
+
+            List<Unit> units = new ArrayList<>();
+            units.add(new CavalryUnit("Knight", 15));
+            units.add(new RangedUnit("Archer", 20));
+            units.add(new InfantryUnit("Solider1", 30));
+            units.add(new InfantryUnit("Solider2", 30));
+            units.add(new InfantryUnit("Solider3", 30));
+            units.add(new CommanderUnit("Rex", 40));
+            armyOne.addAll(units);
+
+            List<Unit> expected = new ArrayList<>();
+            expected.add(new InfantryUnit("Solider1", 30));
+            expected.add(new InfantryUnit("Solider2", 30));
+            expected.add(new InfantryUnit("Solider3", 30));
+
+            List<Unit> actual = new ArrayList<>();
+            actual.add(armyOne.getInfantryUnits().get(0));
+            actual.add(armyOne.getInfantryUnits().get(1));
+            actual.add(armyOne.getInfantryUnits().get(2));
+            assertTrue(expected.toString().equals(actual.toString()));
+        }
+
+        @Test
+        public void getRangedUnit_returns_expected_information() {
+            Army armyOne = new Army("armyOne");
+            Army armyTwo = new Army("armyTwo");
+
+            List<Unit> units = new ArrayList<>();
+            units.add(new CavalryUnit("Knight", 15));
+            units.add(new RangedUnit("Archer1", 20));
+            units.add(new RangedUnit("Archer2", 20));
+            units.add(new RangedUnit("Archer3", 20));
+            units.add(new InfantryUnit("Solider", 30));
+            units.add(new CommanderUnit("Rex", 40));
+            armyOne.addAll(units);
+
+            List<Unit> expected = new ArrayList<>();
+            expected.add(new RangedUnit("Archer1", 20));
+            expected.add(new RangedUnit("Archer2", 20));
+            expected.add(new RangedUnit("Archer3", 20));
+
+            List<Unit> actual = new ArrayList<>();
+            actual.add(armyOne.getRangedUnits().get(0));
+            actual.add(armyOne.getRangedUnits().get(1));
+            actual.add(armyOne.getRangedUnits().get(2));
+            assertEquals(expected.toString(), actual.toString());
+        }
+
+        @Test
+        public void getCavalryUnits_returns_expected_information() {
+            Army armyOne = new Army("armyOne");
+            Army armyTwo = new Army("armyTwo");
+
+            List<Unit> units = new ArrayList<>();
+            units.add(new CavalryUnit("Knight1", 15));
+            units.add(new CavalryUnit("Knight2", 15));
+            units.add(new CavalryUnit("Knight3", 15));
+            units.add(new RangedUnit("Archer", 20));
+            units.add(new InfantryUnit("Solider", 30));
+            units.add(new CommanderUnit("Rex", 40));
+            armyOne.addAll(units);
+
+            List<Unit> expected = new ArrayList<>();
+            expected.add(new CavalryUnit("Knight1", 15));
+            expected.add(new CavalryUnit("Knight2", 15));
+            expected.add(new CavalryUnit("Knight3", 15));
+
+            List<Unit> actual = new ArrayList<>();
+            actual.add(armyOne.getCavalryUnits().get(0));
+            actual.add(armyOne.getCavalryUnits().get(1));
+            actual.add(armyOne.getCavalryUnits().get(2));
+            assertEquals(expected.toString(), actual.toString());
+        }
+
+        @Test
+        public void getCommanderUnits_returns_expected_information() {
+            Army armyOne = new Army("armyOne");
+            Army armyTwo = new Army("armyTwo");
+
+            List<Unit> units = new ArrayList<>();
+            units.add(new CavalryUnit("Knight", 15));
+            units.add(new RangedUnit("Archer", 20));
+            units.add(new InfantryUnit("Solider", 30));
+            units.add(new CommanderUnit("Rex1", 40));
+            units.add(new CommanderUnit("Rex2", 40));
+            units.add(new CommanderUnit("Rex3", 40));
+            armyOne.addAll(units);
+
+            List<Unit> expected = new ArrayList<>();
+            expected.add(new CommanderUnit("Rex1", 40));
+            expected.add(new CommanderUnit("Rex2", 40));
+            expected.add(new CommanderUnit("Rex3", 40));
+
+            List<Unit> actual = new ArrayList<>();
+            actual.add(armyOne.getCommanderUnits().get(0));
+            actual.add(armyOne.getCommanderUnits().get(1));
+            actual.add(armyOne.getCommanderUnits().get(2));
+            assertEquals(expected.toString(), actual.toString());
+        }
+    }
+
+        @Test
     void testEquals_returns_false_if_to_objects_is_not_equal() {
         //Arrange
         Army army1 = new Army("Army1");
