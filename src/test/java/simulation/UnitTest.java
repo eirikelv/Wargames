@@ -1,5 +1,6 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package simulation;
 
+import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
