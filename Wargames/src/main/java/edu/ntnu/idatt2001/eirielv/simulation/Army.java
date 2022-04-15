@@ -1,9 +1,16 @@
 package edu.ntnu.idatt2001.eirielv.simulation;
 
+import edu.ntnu.idatt2001.eirielv.Units.CavalryUnit;
+import edu.ntnu.idatt2001.eirielv.Units.CommanderUnit;
+import edu.ntnu.idatt2001.eirielv.Units.InfantryUnit;
+import edu.ntnu.idatt2001.eirielv.Units.RangedUnit;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * This class represents an army of units.
@@ -37,13 +44,7 @@ public class Army {
         this.units = units;
     }
 
-    /**
-     *The method getName returns the name of the army, represented as a String
-     * @return the name of the army as String
-     */
-    public String getName() {
-        return name;
-    }
+
 
     /**
      *The method add, adds a unit to the units list.
@@ -85,6 +86,50 @@ public class Army {
      */
     public boolean hasUnits(){
         return units.size() != 0;
+    }
+
+    /**
+     *The method getName returns the name of the army, represented as a String
+     * @return the name of the army as String
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * The method getInfantryUnits returns all Infantries as a list
+     * @return infantryunits as a list
+     */
+    public List<Unit> getInfantryUnits(){
+        return units.stream().filter(unit -> unit instanceof InfantryUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * The method getCavalryUnits returns all Cavalries as a list
+     * @return cavalryunits as a list
+     */
+    public List<Unit> getCavalryUnits(){
+        return units.stream().filter(unit -> unit instanceof CavalryUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * The method getRangedUnits returns all ranged units as a list
+     * @return ranged units as a list
+     */
+    public List<Unit> getRangedUnits(){
+        return units.stream().filter(unit -> unit instanceof RangedUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * The method getCommanderUnits returns all commanders as a list
+     * @return commander units as a list
+     */
+    public List<Unit> getCommanderUnits(){
+        return units.stream().filter(unit -> unit instanceof CommanderUnit)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
