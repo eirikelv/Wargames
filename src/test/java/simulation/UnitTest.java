@@ -1,5 +1,6 @@
 package simulation;
 
+import edu.ntnu.idatt2001.eirielv.simulation.Army;
 import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ public class UnitTest {
 
     @Test
     public void name_not_null() throws Exception {
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             Unit unittest = new Unit("", 1, 1, 1) {
                 @Override
                 public int getAttackBonus() {
@@ -21,15 +22,12 @@ public class UnitTest {
                     return 0;
                 }
             };
-        }
-        catch (IllegalArgumentException e){
-            assertTrue(true);
-        }
+        });
     }
 
     @Test
     public void name_not_blank() throws Exception{
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             Unit unittest = new Unit(" ", 1, 1, 1) {
                 @Override
                 public int getAttackBonus() {
@@ -41,9 +39,6 @@ public class UnitTest {
                     return 0;
                 }
             };
-        }
-        catch (IllegalArgumentException e){
-            assertTrue(true);
-        }
+        });
     }
 }
