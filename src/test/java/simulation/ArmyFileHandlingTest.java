@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,14 +32,11 @@ public class ArmyFileHandlingTest {
         }
 
         @Test void does_not_read_incorrect_information_from_a_csv_file(){
-            Army armyOne = new Army("WrongInformation");
-            ArmyFileHandling armyFileHandling = new ArmyFileHandling();
-            try{
-                armyFileHandling.getArmyFromCSVInput("WrongInformation");
-            }
-            catch (IllegalArgumentException e) {
-                assertTrue(true);
-            }
+            assertThrows(IllegalArgumentException.class, () -> {
+                Army armyOne = new Army("WrongInformation");
+                ArmyFileHandling armyFileHandling = new ArmyFileHandling();
+                    armyFileHandling.getArmyFromCSVInput("WrongInformation");
+            });
         }
     }
 
@@ -49,41 +45,38 @@ public class ArmyFileHandlingTest {
 
         @Test
         public void throws_illegalArgumentException_if_there_are_special_characters_in_file_name(){
-            Army specialCharacterArmy = new Army("Eirik's army!");
-            ArmyFileHandling armyFileHandling = new ArmyFileHandling();
-            List<Unit> units = new ArrayList<>();
-            try {
+            assertThrows(IllegalArgumentException.class, () -> {
+                Army specialCharacterArmy = new Army("Eirik's army!");
+                ArmyFileHandling armyFileHandling = new ArmyFileHandling();
+
+                List<Unit> units = new ArrayList<>();
                 units.add(new CavalryUnit("Knight", 15));
                 units.add(new RangedUnit("Archer", 20));
                 units.add(new InfantryUnit("Solider1", 30));
                 units.add(new CommanderUnit("Rex", 40));
                 specialCharacterArmy.addAll(units);
+
                 armyFileHandling.writeUnitsToCSVFile(specialCharacterArmy);
-            }
-            catch(IllegalArgumentException e){
-                assertTrue(true);
-            }
+            });
         }
 
         @Test
         public void throws_IllegalArgumentException_if_file_already_exists()  {
-            Army testArmyDuplicate = new Army("testArmyDuplicate");
-            ArmyFileHandling armyFileHandling = new ArmyFileHandling();
-            List<Unit> units = new ArrayList<>();
-            File testFile = null;
-            try {
+            assertThrows(IllegalArgumentException.class, () -> {
+                Army testArmyDuplicate = new Army("testArmyDuplicate");
+                ArmyFileHandling armyFileHandling = new ArmyFileHandling();
+
+                List<Unit> units = new ArrayList<>();
                 units.add(new CavalryUnit("Knight", 15));
                 units.add(new RangedUnit("Archer", 20));
                 units.add(new InfantryUnit("Solider1", 30));
                 units.add(new CommanderUnit("Rex", 40));
                 testArmyDuplicate.addAll(units);
+
                 armyFileHandling.writeUnitsToCSVFile(testArmyDuplicate);
                 armyFileHandling.writeUnitsToCSVFile(testArmyDuplicate);
-            }
-            catch(IllegalArgumentException e){
-                assertTrue(true);
-            }
-            testFile = new File("src/main/resources/ArmyCSVFiles/testArmyDuplicate.csv");
+            });
+            File testFile = new File("src/main/resources/ArmyCSVFiles/testArmyDuplicate.csv");
             testFile.delete();
         }
 
