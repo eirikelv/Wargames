@@ -25,26 +25,16 @@ class ArmyTest {
 
         @Test
         void name_attribute_gets_empty_name_value() {
-            try {
-                //arrange
+            assertThrows(IllegalArgumentException.class, () -> {
                 Army army = new Army("");
-                //act
-            } catch (IllegalArgumentException e) {
-                //assert
-                assertTrue(true);
-            }
+            });
         }
 
         @Test
         void name_attribute_gets_blank_name_value() {
-            try {
-                //arrange
+            assertThrows(IllegalArgumentException.class, () -> {
                 Army army = new Army(" ");
-                //act
-            } catch (IllegalArgumentException e) {
-                //assert
-                assertTrue(true);
-            }
+            });
         }
     }
 
