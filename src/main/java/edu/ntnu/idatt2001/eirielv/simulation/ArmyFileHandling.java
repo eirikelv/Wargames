@@ -23,7 +23,11 @@ public class ArmyFileHandling {
     /**
      * getArmyFromCSVInput reads a CSV file and makes an army object out of it. The first line it reads is the name of
      * the army. Then it reads the next lines, where the first string combination is the Unit type, the second is the
-     * unit name, and the last is the health
+     * unit name, and the last is the health.
+     * <p>
+     *     If there is more sections than, unit type, name and health, it won't be
+     *     stored. The method also ignores 1. line, because army name comes from the document name.
+     * </p>
      * @param armyName is the name of the army, and the name of the file
      * @return army object
      */
@@ -64,6 +68,7 @@ public class ArmyFileHandling {
             }
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
+            System.out.println("There was a fault in the file you represented");
         }
         army.addAll(newArmy);
         return army;
@@ -71,7 +76,7 @@ public class ArmyFileHandling {
 
 
     /**
-     * writeUnitsToCSVFile takes in a army and. The csv file will be named as the army name. If a file with the same
+     * writeUnitsToCSVFile takes in an army and. The csv file will be named as the army name. If a file with the same
      * name already exists or the name is with special characters, the method throws illegalArgumentException.
      * @param army is the army object that will be made to a CSV file
      */
@@ -96,7 +101,7 @@ public class ArmyFileHandling {
     }
 
     /**
-     * This method checks if a army name has special characters. If the name contains special characters, it returns
+     * ivalidAmryName checks if a army name has special characters. If the name contains special characters, it returns
      * true, and the name is invalid.
      * @param name takes a String name
      * @return true if the name has special characters, else it returns false
