@@ -45,6 +45,7 @@ public class UnitFactory {
      * @return an arraylist of the unit duplicates
      */
     public static List<Unit> addDuplicateUnitsAsList(UnitType unitType, String unitName, int health, int quantity){
+        if (quantity <= 0) throw new IllegalArgumentException("quantity needs to be 1 or higher");
         List<Unit> units = new ArrayList<>();
         IntStream.range(0, quantity).forEach(run -> units.add(getUnit(unitType,unitName,health)));
         return units;
