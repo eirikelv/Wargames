@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001.eirielv.Units;
+package edu.ntnu.idatt2001.eirielv.units;
 
 import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 

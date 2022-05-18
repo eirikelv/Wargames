@@ -3,7 +3,7 @@ package edu.ntnu.idatt2001.eirielv.simulation;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
-import edu.ntnu.idatt2001.eirielv.Units.*;
+import edu.ntnu.idatt2001.eirielv.units.*;
 
 import java.util.regex.*;
 import java.io.*;

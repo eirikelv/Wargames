@@ -1,6 +1,6 @@
 package simulation;
 
-import edu.ntnu.idatt2001.eirielv.Units.*;
+import edu.ntnu.idatt2001.eirielv.units.*;
 import edu.ntnu.idatt2001.eirielv.simulation.*;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

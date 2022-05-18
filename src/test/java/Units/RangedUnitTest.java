@@ -3,7 +3,7 @@ package Units;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import edu.ntnu.idatt2001.eirielv.Units.*;
+import edu.ntnu.idatt2001.eirielv.units.*;
 
 
 public class RangedUnitTest {

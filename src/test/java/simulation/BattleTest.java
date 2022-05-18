@@ -1,6 +1,6 @@
 package simulation;
 
-import edu.ntnu.idatt2001.eirielv.Units.*;
+import edu.ntnu.idatt2001.eirielv.units.*;
 import edu.ntnu.idatt2001.eirielv.simulation.Army;
 import edu.ntnu.idatt2001.eirielv.simulation.Battle;
 import edu.ntnu.idatt2001.eirielv.simulation.Unit;
