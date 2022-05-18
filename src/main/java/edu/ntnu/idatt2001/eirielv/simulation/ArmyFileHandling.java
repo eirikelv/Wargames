@@ -23,7 +23,8 @@ public class ArmyFileHandling {
     /**
      * getArmyFromCSVInput reads a CSV file and makes an army object out of it. The first line it reads is the name of
      * the army. Then it reads the next lines, where the first string combination is the Unit type, the second is the
-     * unit name, and the last is the health.
+     * unit name, and the last is the health. All the information makes a unit by calling the method createUnit from
+     * the class UnitFactory
      * <p>
      *     If there is more sections than, unit type, name and health, it won't be
      *     stored. The method also ignores 1. line, because army name comes from the document name.
@@ -37,12 +38,12 @@ public class ArmyFileHandling {
         try{
             Reader reader = Files.newBufferedReader(Path.of(stringPath + armyName + ".csv"));
             CSVReader csvReader = new CSVReader(reader);
-            String[] line;
+            String[] collum;
             csvReader.skip(1);
-            while((line = csvReader.readNext()) != null){
-                UnitType unitType = UnitType.valueOf(line[0].toUpperCase());
-                String name = line[1];
-                int health = Integer.parseInt(line[2]);
+            while((collum = csvReader.readNext()) != null){
+                UnitType unitType = UnitType.valueOf(collum[0].toUpperCase());
+                String name = collum[1];
+                int health = Integer.parseInt(collum[2]);
                 newArmy.add(UnitFactory.createUnit(unitType,name, health));
             }
         } catch (IOException | CsvValidationException e) {
