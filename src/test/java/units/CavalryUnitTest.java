@@ -1,4 +1,4 @@
-package Units;
+package units;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package Units;
+package units;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -6,43 +6,43 @@ import static org.junit.jupiter.api.Assertions.*;
 import edu.ntnu.idatt2001.eirielv.units.*;
 
 
-public class RangedUnitTest {
+public class InfantryUnitTest {
 
     @Nested
     class the_manual_constructor_gets_expected_values {
         @Test
         public void name_is_a_expected_value() {
             //arrange
-            RangedUnit rangedUnit = new RangedUnit("Archer", 100, 15, 8);
-            String expected_name = "Archer";
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, 15, 10);
+            String expected_name = "Knight";
             //act
 
             //assert
-            assertEquals(expected_name, rangedUnit.getName());
+            assertEquals(expected_name, infantryUnit.getName());
         }
 
         @Test
         public void health_is_a_expected_value() {
             //arrange
-            RangedUnit rangedUnit = new RangedUnit("Archer", 100, 15, 8);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, 15, 10);
             //assert
-            assertEquals(100, rangedUnit.getHealth());
+            assertEquals(100, infantryUnit.getHealth());
         }
 
         @Test
         public void attack_is_a_expected_value() {
             //arrange
-            RangedUnit rangedUnit = new RangedUnit("Archer", 100, 15, 8);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, 15, 10);
             //assert
-            assertEquals(15, rangedUnit.getAttack());
+            assertEquals(15, infantryUnit.getAttack());
         }
 
         @Test
         public void armor_is_a_expected_value() {
             //arrange
-            RangedUnit rangedUnit = new RangedUnit("Archer", 100, 15, 8);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, 15, 10);
             //assert
-            assertEquals(8, rangedUnit.getArmor());
+            assertEquals(10, infantryUnit.getArmor());
         }
     }
 
@@ -51,17 +51,17 @@ public class RangedUnitTest {
         @Test
         public void name_is_a_expected_value(){
             //arrange
-            RangedUnit rangedUnit = new RangedUnit("Archer", 100);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
             //assert
-            assertEquals("Archer", rangedUnit.getName());
+            assertEquals("Knight", infantryUnit.getName());
         }
 
         @Test
         public void health_is_a_expected_value() {
             //arrange
-            RangedUnit rangedUnit = new RangedUnit("Archer", 100);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
             //assert
-            assertEquals(100, rangedUnit.getHealth());
+            assertEquals(100, infantryUnit.getHealth());
         }
     }
 
@@ -72,7 +72,7 @@ public class RangedUnitTest {
         public void name_is_empty(){
             try {
                 //arrange
-                RangedUnit rangedUnit = new RangedUnit("", 100);
+                InfantryUnit infantryUnit = new InfantryUnit("", 100);
                 //act
             } catch (IllegalArgumentException e){
                 //assert
@@ -84,7 +84,7 @@ public class RangedUnitTest {
         public void name_is_blank(){
             try {
                 //arrange
-                RangedUnit rangedUnit = new RangedUnit(" ", 100);
+                InfantryUnit infantryUnit = new InfantryUnit(" ", 100);
                 //act
             } catch (IllegalArgumentException e){
                 //assert
@@ -96,7 +96,7 @@ public class RangedUnitTest {
         public void health_is_lower_than_0(){
             try {
                 //arrange
-                RangedUnit rangedUnit = new RangedUnit("Archer", -1);
+                InfantryUnit infantryUnit = new InfantryUnit("Knight", -1);
                 //act
             } catch (IllegalArgumentException e){
                 //assert
@@ -108,7 +108,7 @@ public class RangedUnitTest {
         public void attack_is_negative(){
             try {
                 //arrange
-                RangedUnit rangedUnit = new RangedUnit("Archer", 100, -1, 8);
+                InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, -1, 10);
                 //act
             } catch(IllegalArgumentException e) {
                 //assort
@@ -120,11 +120,11 @@ public class RangedUnitTest {
         public void armor_is_negative(){
             try {
                 //arrange
-                RangedUnit rangedUnit = new RangedUnit("Archer", 100, 15, -1);
-            //act
+                InfantryUnit infantryUnit = new InfantryUnit("Knight", 100, 15, -1);
+                //act
             } catch(IllegalArgumentException e) {
-            //assort
-            assertTrue(true);
+                //assort
+                assertTrue(true);
             }
         }
     }
@@ -132,12 +132,12 @@ public class RangedUnitTest {
     @Nested
     class getAttackbonus_gives_expected_values{
         @Test
-        public void attackBonus_is_3(){
+        public void attackBonus_is_2(){
             //arrange
-            RangedUnit rangedUnit = new RangedUnit("Archer", 100);
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
             //act
-            int expectedAttackBonus = 3;
-            int attackBonus = rangedUnit.getAttackBonus();
+            int expectedAttackBonus = 2;
+            int attackBonus = infantryUnit.getAttackBonus();
             //assert
             assertEquals(expectedAttackBonus,attackBonus);
         }
@@ -146,38 +146,15 @@ public class RangedUnitTest {
     @Nested
     class getResistbonus_gives_expected_values {
         @Test
-        public void resistBonus_equals_6_after_1_attacks() {
+        public void resistBonus_is_1(){
             //arrange
-            RangedUnit rangedUnit = new RangedUnit("Archer", 100);
-            int expectedResistanceBonus = 6;
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
             //act
-
+            int expectedResistBonus = 1;
+            int resistBonus = infantryUnit.getResistBonus();
             //assert
-            assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus());
+            assertEquals(expectedResistBonus,resistBonus);
         }
 
-        @Test
-        public void resistBonus_equals_4_after_2_attacks() {
-            //arrange
-            RangedUnit rangedUnit = new RangedUnit("Archer", 100);
-            int expectedResistanceBonus = 4;
-            //act
-            rangedUnit.getResistBonus();
-            //assert
-            assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus());
-        }
-
-        @Test
-        public void resistBonus_equals_2_after_3_attacks() {
-            //arrange
-            RangedUnit rangedUnit = new RangedUnit("Archer", 100);
-            int expectedResistanceBonus = 2;
-            //act
-            rangedUnit.getResistBonus();
-            rangedUnit.getResistBonus();
-            //assert
-            assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus());
-        }
     }
-
 }
