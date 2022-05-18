@@ -38,33 +38,12 @@ public class ArmyFileHandling {
             Reader reader = Files.newBufferedReader(Path.of(stringPath + armyName + ".csv"));
             CSVReader csvReader = new CSVReader(reader);
             String[] line;
+            csvReader.skip(1);
             while((line = csvReader.readNext()) != null){
-                switch(line[0]){
-                    case "InfantryUnit":
-                        String name = line[1];
-                        int health = Integer.parseInt(line[2]) ;
-                        newArmy.add(new InfantryUnit(name, health));
-                        break;
-
-                    case "RangedUnit":
-                        name = line[1];
-                        health = Integer.parseInt(line[2]) ;
-                        newArmy.add(new RangedUnit(name, health));
-                        break;
-
-                    case "CommanderUnit":
-                        name = line[1];
-                        health = Integer.parseInt(line[2]) ;
-                        newArmy.add(new CommanderUnit(name, health));
-                        break;
-
-                    case "CavalryUnit":
-                        name = line[1];
-                        health = Integer.parseInt(line[2]) ;
-                        newArmy.add(new CavalryUnit(name, health));
-                        break;
-                }
-
+                UnitType unitType = UnitType.valueOf(line[0].toUpperCase());
+                String name = line[1];
+                int health = Integer.parseInt(line[2]);
+                newArmy.add(UnitFactory.createUnit(unitType,name, health));
             }
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
@@ -91,7 +70,7 @@ public class ArmyFileHandling {
             String[] header = {army.getName()};
             writer.writeNext(header);
             army.getAllUnits().forEach(unit -> {
-                String[] line = {unit.getClass().getSimpleName(), unit.getName(),String.valueOf(unit.getHealth()),
+                String[] line = {unit.getClass().getSimpleName().toUpperCase(), unit.getName(),String.valueOf(unit.getHealth()),
                         String.valueOf(unit.getAttack()), String.valueOf(unit.getArmor())};
                 writer.writeNext(line);
             });
@@ -101,7 +80,7 @@ public class ArmyFileHandling {
     }
 
     /**
-     * ivalidAmryName checks if a army name has special characters. If the name contains special characters, it returns
+     * invalidArmyName checks if a army name has special characters. If the name contains special characters, it returns
      * true, and the name is invalid.
      * @param name takes a String name
      * @return true if the name has special characters, else it returns false
