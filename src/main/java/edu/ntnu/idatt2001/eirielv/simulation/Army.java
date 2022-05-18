@@ -46,7 +46,7 @@ public class Army {
 
 
     /**
-     *The method add, adds a unit to the units list.
+     *The method addUnit, adds a unit to the units list.
      * @param unit is a unit based on the Unit class
      */
     public void add(Unit unit){
