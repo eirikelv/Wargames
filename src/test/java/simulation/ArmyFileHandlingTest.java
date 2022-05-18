@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ArmyFileHandlingTest {
 
     @Nested
-    class armyCSVInput_works_as_expected_when_it{
+    class getArmyFromCSVInput_works_as_expected_when_it{
 
         @Test
         public void reads_correct_information_from_a_csv_file_and_makes_a_army(){
@@ -27,17 +27,29 @@ public class ArmyFileHandlingTest {
             expectedInformation.add(new CommanderUnit("Mountain King",180));
             armyOne.addAll(expectedInformation);
 
-            assertEquals(armyOne.getAllUnits().toString(), armyFileHandling.getArmyFromCSVInput("HumanArmy").getAllUnits().toString()); ;
+            assertEquals(armyOne.getAllUnits().toString(), armyFileHandling.getArmyFromCSVInput("HumanArmy")
+                    .getAllUnits().toString());
 
         }
 
-        @Test void does_not_read_incorrect_information_from_a_csv_file(){
+        @Test
+        public void does_not_read_incorrect_information_from_a_csv_file(){
             assertThrows(IllegalArgumentException.class, () -> {
                 Army armyOne = new Army("WrongInformation");
                 ArmyFileHandling armyFileHandling = new ArmyFileHandling();
                     armyFileHandling.getArmyFromCSVInput("WrongInformation");
             });
         }
+
+        @Test
+        public void throws_exception_if_the_unitType_does_not_exist(){
+            assertThrows(IllegalArgumentException.class, () -> {
+                Army armyOne = new Army("WrongUnitType");
+                ArmyFileHandling armyFileHandling = new ArmyFileHandling();
+                armyFileHandling.getArmyFromCSVInput("WrongUnitType");
+            });
+        }
+
     }
 
     @Nested
