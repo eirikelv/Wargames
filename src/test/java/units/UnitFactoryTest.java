@@ -12,14 +12,14 @@ public class UnitFactoryTest {
     class getUnit_method_makes_works_as_expected_when{
 
         @Test
-        public void getUnit_makes_a_unit(){
+        public void createUnit_makes_a_unit(){
             Army testArmy = new Army("testArmy");
             testArmy.add(UnitFactory.createUnit(UnitType.INFANTRYUNIT,"Tarzan",100));
             assertTrue(testArmy.hasUnits());
         }
 
         @Test
-        public void getUnit_gives_correct_unitType(){
+        public void createUnit_gives_correct_unitType(){
             Army testArmy = new Army("testArmy");
             testArmy.add(UnitFactory.createUnit(UnitType.INFANTRYUNIT,"Tarzan",100));
             InfantryUnit infantryUnit = new InfantryUnit("Tarzan",100);
@@ -27,7 +27,7 @@ public class UnitFactoryTest {
         }
 
         @Test
-        public void getUnit_makes_correct_information(){
+        public void createUnit_makes_correct_information(){
             Army testArmy = new Army("Army");
             Army expectedArmy = new Army("Army");
             InfantryUnit expectedInfantry = new InfantryUnit("Tarzan", 100);
@@ -36,6 +36,14 @@ public class UnitFactoryTest {
             testArmy.add(UnitFactory.createUnit(UnitType.INFANTRYUNIT,"Tarzan",100));
 
             assertEquals(expectedArmy.toString(),testArmy.toString());
+        }
+        @Test
+        public void createUnit_throws_exception_if_the_unitType_does_not_exist(){
+            assertThrows(IllegalArgumentException.class, () -> {
+                Army armyOne = new Army("WrongUnitType");
+                ArmyFileHandling armyFileHandling = new ArmyFileHandling();
+                armyFileHandling.getArmyFromCSVInput("WrongUnitType");
+            });
         }
 
     }
