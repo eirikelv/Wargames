@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class ArmyFileHandling {
 
-    static String stringPath = ("src/main/resources/ArmyCSVFiles/");
+    static String stringPath = ("src/main/resources/edu/ntnu/idatt2001/eirielv/armyCSVFiles/");
 
     /**
      * getArmyFromCSVInput reads a CSV file and makes an army object out of it. The first line it reads is the name of

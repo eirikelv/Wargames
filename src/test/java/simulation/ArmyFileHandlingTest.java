@@ -76,7 +76,7 @@ public class ArmyFileHandlingTest {
                 armyFileHandling.writeUnitsToCSVFile(testArmyDuplicate);
                 armyFileHandling.writeUnitsToCSVFile(testArmyDuplicate);
             });
-            File testFile = new File("src/main/resources/ArmyCSVFiles/testArmyDuplicate.csv");
+            File testFile = new File("src/main/resources/edu/ntnu/idatt2001/eirielv/armyCSVFiles/testArmyDuplicate.csv");
             testFile.delete();
         }
 
@@ -92,7 +92,7 @@ public class ArmyFileHandlingTest {
             units.add(new CommanderUnit("Rex", 40));
             armyOne.addAll(units);
             armyFileHandling.writeUnitsToCSVFile(armyOne);
-            File testFile = new File("src/main/resources/ArmyCSVFiles/armyOne.csv");
+            File testFile = new File("src/main/resources/edu/ntnu/idatt2001/eirielv/armyCSVFiles/armyOne.csv");
             assertTrue(testFile.exists());
             testFile.delete();
         }
@@ -112,7 +112,7 @@ public class ArmyFileHandlingTest {
 
             Army armyTwo = armyFileHandling.getArmyFromCSVInput("armyOne");
             assertEquals(armyOne.toString(), armyTwo.toString());
-            File testFile = new File("src/main/resources/ArmyCSVFiles/armyOne.csv");
+            File testFile = new File("src/main/resources/edu/ntnu/idatt2001/eirielv/armyCSVFiles/armyOne.csv");
             testFile.delete();
         }
     }
