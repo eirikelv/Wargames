@@ -67,6 +67,6 @@ public class Battle {
 
     @Override
     public String toString() {
-        return armyOne + "VS" + armyTwo;
+        return armyOne.getName() + " VS " + armyTwo.getName();
     }
 }
