@@ -14,14 +14,14 @@ public class UnitFactoryTest {
         @Test
         public void getUnit_makes_a_unit(){
             Army testArmy = new Army("testArmy");
-            testArmy.add(UnitFactory.getUnit(UnitType.INFANTRYUNIT,"Tarzan",100));
+            testArmy.add(UnitFactory.createUnit(UnitType.INFANTRYUNIT,"Tarzan",100));
             assertTrue(testArmy.hasUnits());
         }
 
         @Test
         public void getUnit_gives_correct_unitType(){
             Army testArmy = new Army("testArmy");
-            testArmy.add(UnitFactory.getUnit(UnitType.INFANTRYUNIT,"Tarzan",100));
+            testArmy.add(UnitFactory.createUnit(UnitType.INFANTRYUNIT,"Tarzan",100));
             InfantryUnit infantryUnit = new InfantryUnit("Tarzan",100);
             assertEquals(testArmy.getAllUnits().get(0).getClass(),InfantryUnit.class);
         }
@@ -33,7 +33,7 @@ public class UnitFactoryTest {
             InfantryUnit expectedInfantry = new InfantryUnit("Tarzan", 100);
 
             expectedArmy.add(expectedInfantry);
-            testArmy.add(UnitFactory.getUnit(UnitType.INFANTRYUNIT,"Tarzan",100));
+            testArmy.add(UnitFactory.createUnit(UnitType.INFANTRYUNIT,"Tarzan",100));
 
             assertEquals(expectedArmy.toString(),testArmy.toString());
         }
