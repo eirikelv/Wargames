@@ -1,7 +1,7 @@
 package edu.ntnu.idatt2001.eirielv.units;
 
 
-
+import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
 
 /**
  * The CommanderUnit extends CavalryUnit, and uses the same bonuses ass the cavalry unit. The CommanderUnit class
@@ -41,7 +41,7 @@ public class CommanderUnit extends CavalryUnit{
      * @return Returns the attack bonus to the commander unit
      */
     @Override
-    public int getAttackBonus() {
+    public int getAttackBonus(TerrainType terrainType) {
         int attackBonus = 2;
         if(attackedCount < 1) attackBonus = 6;
 
@@ -55,7 +55,7 @@ public class CommanderUnit extends CavalryUnit{
      * @return Returns the resistancebonus of the Commander
      */
     @Override
-    public int getResistBonus() {
+    public int getResistBonus(TerrainType terrainType) {
 
         return 1;
     }

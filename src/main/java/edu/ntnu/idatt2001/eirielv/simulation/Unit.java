@@ -36,8 +36,9 @@ public abstract class Unit {
      * subtracted with the attack points and AttackBonus, then the armor points and ResistBonus is added with the health.
      * @param opponent The Unit opponent is the opponent receiving the attack
      */
-    public void attack(Unit opponent){
-        int newOpponentHealth = opponent.getHealth() - (this.attack + this.getAttackBonus()) + (opponent.getArmor() + opponent.getResistBonus());
+    public void attack(Unit opponent,TerrainType terrainType){
+        int newOpponentHealth = opponent.getHealth() - (this.attack + this.getAttackBonus(terrainType)) +
+                (opponent.getArmor() + opponent.getResistBonus(terrainType));
         opponent.setHealth(newOpponentHealth);
     }
 
@@ -77,13 +78,13 @@ public abstract class Unit {
      * The method getAttackBonus returns the attackbonus when a unit is attacking an opponent
      * @return attackbonus to the unit representet as int
      */
-    public abstract int getAttackBonus();
+    public abstract int getAttackBonus(TerrainType terrainType);
 
     /**
      * The method getResistBonus returns the resistbonus of the opponent getting attacked
      * @return resistbonus of the opponent getting attacked representet as int
      */
-    public abstract int getResistBonus();
+    public abstract int getResistBonus(TerrainType terrainType);
 
     /**
      * The method setHealth sets the healthvalue of the unit

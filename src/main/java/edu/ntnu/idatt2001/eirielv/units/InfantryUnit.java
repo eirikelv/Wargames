@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.eirielv.units;
 
+import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
 import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 
 
@@ -34,20 +35,24 @@ public class InfantryUnit extends Unit {
      * {@inheritDoc}
      * The infantry unit attacks with melee, and because of that, the infantry unit gets 2
      * attack bonus to illustrate this
+     * TODO write Java doc for TerrainType
      * @return Returns the attack bonus to the infantry unit
      */
     @Override
-    public int getAttackBonus() {
+    public int getAttackBonus(TerrainType terrainType) {
+        if(terrainType == TerrainType.FOREST) return 2+3;
         return 2;
     }
 
     /**
      *{@inheritDoc}
+     * TODO write Java doc for TerrainType
      * The infantry unit has a low resistance bonus. To illustrate this, the infantry unit gets 1 in resistance bonus
      * @return Returns the resistance bonus to the infantry unit
      */
     @Override
-    public int getResistBonus() {
+    public int getResistBonus(TerrainType terrainType) {
+        if(terrainType == TerrainType.FOREST) return 1+2;
         return 1;
     }
 

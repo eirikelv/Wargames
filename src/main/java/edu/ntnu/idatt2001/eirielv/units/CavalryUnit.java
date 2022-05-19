@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.eirielv.units;
 
+import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
 import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 
 /**
@@ -35,25 +36,31 @@ public class CavalryUnit extends Unit {
      * {@inheritDoc}
      * The cavalry unit has an advantage because it has extra damage with first attack, and because of that, the cavalry
      * unit gets 6 in attack bonus with the first attack. After that the attackbonus equals 2
-     * attack bonus to illustrate this
+     * attack bonus to illustrate this.
+     * TODO write Java doc for TerrainType
      * @return Returns the attack bonus to the cavalry unit
      */
     @Override
-    public int getAttackBonus() {
+    public int getAttackBonus(TerrainType terrainType) {
         int attackBonus = 2;
         if(attackedCount < 1) attackBonus = 6;
 
         this.attackedCount +=1;
+        if(terrainType == TerrainType.PLAINS){
+            return attackBonus + 2;
+        }
         return attackBonus;
     }
 
     /**
      *{@inheritDoc}
+     * TODO write Java doc for TerrainType
      * The cavalry unit has a low resistance bonus. To illustrate this, the cavalry unit gets 1 in resistance bonus
      * @return Returns the resistance bonus to the cavalry unit
      */
     @Override
-    public int getResistBonus() {
+    public int getResistBonus(TerrainType terrainType) {
+        if(terrainType == TerrainType.FOREST) return 0;
         return 1;
     }
 

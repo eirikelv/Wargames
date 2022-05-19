@@ -23,12 +23,12 @@ public class Battle {
      * it is dead, and gets removed from the army who ones the unit.
      * @return the winning army
      */
-    public Army simulate(){
+    public Army simulate(TerrainType terrainType){
         while(armyOne.hasUnits() && armyTwo.hasUnits()){
             Unit unit1 = armyOne.getRandom();
             Unit unit2 = armyTwo.getRandom();
 
-            unit1.attack(unit2);
+            unit1.attack(unit2,terrainType);
             if(unit2.getHealth() <= 0){
                 armyTwo.remove(unit2);
                 if(armyTwo.hasUnits()){
@@ -37,7 +37,7 @@ public class Battle {
                 else break;
             }
 
-            unit2.attack(unit1);
+            unit2.attack(unit1,terrainType);
             if(unit1.getHealth() <= 0) armyOne.remove(unit1);
 
         }

@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.eirielv.units;
 
+import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
 import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 
 
@@ -38,10 +39,17 @@ public class RangedUnit extends Unit {
      * {@inheritDoc}
      * The ranged unit has an advantage because it can attack from range, and because of that, the ranged unit gets 3
      * attack bonus to illustrate this
+     * TODO write Java doc for TerrainType
      * @return Returns the attack bonus to the ranged unit
      */
     @Override
-    public int getAttackBonus() {
+    public int getAttackBonus(TerrainType terrainType) {
+        if(terrainType == TerrainType.HILL){
+            return 3+2;
+        }
+        else if(terrainType == TerrainType.FOREST){
+            return 3-1;
+        }
         return 3;
     }
 
@@ -50,10 +58,11 @@ public class RangedUnit extends Unit {
      * Then a range unit is first attack, the resist bonus will defend the ranged unit for 6 attack points, the second
      * time it will defend the ranged unit for 4 attack points, after this the resist bonus will defend ranged unit by 2
      * resist bonuses.
+     * TODO write Java doc for TerrainType
      * @return Returns the resistbonus
      */
     @Override
-    public int getResistBonus() {
+    public int getResistBonus(TerrainType terrainType) {
         int resistBonus = 6 - (2 * this.attackedCount);
 
         if(resistBonus <= 0) resistBonus = 2;
