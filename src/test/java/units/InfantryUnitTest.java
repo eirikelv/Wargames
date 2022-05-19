@@ -1,5 +1,6 @@
 package units;
 
+import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -132,12 +133,25 @@ public class InfantryUnitTest {
     @Nested
     class getAttackbonus_gives_expected_values{
         @Test
-        public void attackBonus_is_2(){
+        public void attackBonus_is_2_if_terrain_is_NOT_forest(){
             //arrange
             InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
+            TerrainType terrainType = TerrainType.HILL;
             //act
             int expectedAttackBonus = 2;
-            int attackBonus = infantryUnit.getAttackBonus();
+            int attackBonus = infantryUnit.getAttackBonus(terrainType);
+            //assert
+            assertEquals(expectedAttackBonus,attackBonus);
+        }
+
+        @Test
+        public void attackBonus_is_5_if_terrainType_is_Forest(){
+            //arrange
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
+            TerrainType terrainType = TerrainType.FOREST;
+            //act
+            int expectedAttackBonus = 5;
+            int attackBonus = infantryUnit.getAttackBonus(terrainType);
             //assert
             assertEquals(expectedAttackBonus,attackBonus);
         }
@@ -146,15 +160,27 @@ public class InfantryUnitTest {
     @Nested
     class getResistbonus_gives_expected_values {
         @Test
-        public void resistBonus_is_1(){
+        public void resistBonus_is_1_if_terrain_is_NOT_forest(){
             //arrange
             InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
+            TerrainType terrainType = TerrainType.HILL;
             //act
             int expectedResistBonus = 1;
-            int resistBonus = infantryUnit.getResistBonus();
+            int resistBonus = infantryUnit.getResistBonus(terrainType);
             //assert
             assertEquals(expectedResistBonus,resistBonus);
         }
 
+        @Test
+        public void resistBonus_is_3_if_terrainType_is_Forest() {
+            //arrange
+            InfantryUnit infantryUnit = new InfantryUnit("Knight", 100);
+            TerrainType terrainType = TerrainType.FOREST;
+            //act
+            int expectedResistBonus = 3;
+            int resistBonus = infantryUnit.getResistBonus(terrainType);
+            //assert
+            assertEquals(expectedResistBonus, resistBonus);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package units;
 
+import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -135,9 +136,10 @@ public class CommanderUnitTest {
         public void attackBonus_is_6_with_first_attack() {
             //arrange
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100);
+            TerrainType terrainType = TerrainType.HILL;
             //act
             int expectedAttackBonus = 6;
-            int attackBonus = commanderUnit.getAttackBonus();
+            int attackBonus = commanderUnit.getAttackBonus(terrainType);
             //assert
             assertEquals(expectedAttackBonus, attackBonus);
         }
@@ -147,10 +149,11 @@ public class CommanderUnitTest {
         public void attackBonus_is_2_after_first_attack() {
             //arrange
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100);
+            TerrainType terrainType = TerrainType.HILL;
             //act
             int expectedAttackBonus = 2;
-            commanderUnit.getAttackBonus();
-            int attackBonus = commanderUnit.getAttackBonus();
+            commanderUnit.getAttackBonus(terrainType);
+            int attackBonus = commanderUnit.getAttackBonus(terrainType);
             //assert
             assertEquals(expectedAttackBonus, attackBonus);
         }
@@ -160,9 +163,10 @@ public class CommanderUnitTest {
     public void getResistbonus_gives_expected_values_resistBonus_equals_1() {
         //arrange
         CommanderUnit commanderUnit = new CommanderUnit("Commander", 100);
+        TerrainType terrainType = TerrainType.HILL;
         //act
         int expectedResistanceBonus = 1;
-        int resistanceBonus = commanderUnit.getResistBonus();
+        int resistanceBonus = commanderUnit.getResistBonus(terrainType);
         //assert
         assertEquals(expectedResistanceBonus, resistanceBonus);
     }

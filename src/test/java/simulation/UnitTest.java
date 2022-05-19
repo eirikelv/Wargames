@@ -1,6 +1,7 @@
 package simulation;
 
-import edu.ntnu.idatt2001.eirielv.simulation.Unit;
+import edu.ntnu.idatt2001.eirielv.units.*;
+import edu.ntnu.idatt2001.eirielv.simulation.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,12 +13,12 @@ public class UnitTest {
         assertThrows(IllegalArgumentException.class, () -> {
             Unit unittest = new Unit("", 1, 1, 1) {
                 @Override
-                public int getAttackBonus() {
+                public int getAttackBonus(TerrainType terrainType) {
                     return 0;
                 }
 
                 @Override
-                public int getResistBonus() {
+                public int getResistBonus(TerrainType terrainType) {
                     return 0;
                 }
             };
@@ -29,12 +30,12 @@ public class UnitTest {
         assertThrows(IllegalArgumentException.class, () -> {
             Unit unittest = new Unit(" ", 1, 1, 1) {
                 @Override
-                public int getAttackBonus() {
+                public int getAttackBonus(TerrainType terrainType) {
                     return 0;
                 }
 
                 @Override
-                public int getResistBonus() {
+                public int getResistBonus(TerrainType terrainType) {
                     return 0;
                 }
             };

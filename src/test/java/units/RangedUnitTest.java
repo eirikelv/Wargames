@@ -1,5 +1,6 @@
 package units;
 
+import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -137,7 +138,29 @@ public class RangedUnitTest {
             RangedUnit rangedUnit = new RangedUnit("Archer", 100);
             //act
             int expectedAttackBonus = 3;
-            int attackBonus = rangedUnit.getAttackBonus();
+            int attackBonus = rangedUnit.getAttackBonus(TerrainType.PLAINS);
+            //assert
+            assertEquals(expectedAttackBonus,attackBonus);
+        }
+
+        @Test
+        public void attackBonus_is_5_if_terrainType_is_Hill(){
+            //arrange
+            RangedUnit rangedUnit = new RangedUnit("Archer", 100);
+            //act
+            int expectedAttackBonus = 5;
+            int attackBonus = rangedUnit.getAttackBonus(TerrainType.HILL);
+            //assert
+            assertEquals(expectedAttackBonus,attackBonus);
+        }
+
+        @Test
+        public void attackBonus_is_2_if_terrainType_is_Forest(){
+            //arrange
+            RangedUnit rangedUnit = new RangedUnit("Archer", 100);
+            //act
+            int expectedAttackBonus = 2;
+            int attackBonus = rangedUnit.getAttackBonus(TerrainType.FOREST);
             //assert
             assertEquals(expectedAttackBonus,attackBonus);
         }
@@ -150,10 +173,11 @@ public class RangedUnitTest {
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100);
             int expectedResistanceBonus = 6;
+            TerrainType terrainType = TerrainType.PLAINS;
             //act
 
             //assert
-            assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus());
+            assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus(terrainType));
         }
 
         @Test
@@ -161,10 +185,11 @@ public class RangedUnitTest {
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100);
             int expectedResistanceBonus = 4;
+            TerrainType terrainType = TerrainType.PLAINS;
             //act
-            rangedUnit.getResistBonus();
+            rangedUnit.getResistBonus(terrainType);
             //assert
-            assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus());
+            assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus(terrainType));
         }
 
         @Test
@@ -172,12 +197,14 @@ public class RangedUnitTest {
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100);
             int expectedResistanceBonus = 2;
+            TerrainType terrainType = TerrainType.PLAINS;
             //act
-            rangedUnit.getResistBonus();
-            rangedUnit.getResistBonus();
+            rangedUnit.getResistBonus(terrainType);
+            rangedUnit.getResistBonus(terrainType);
             //assert
-            assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus());
+            assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus(terrainType));
         }
+
     }
 
 }

@@ -1,5 +1,6 @@
 package simulation;
 
+import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
 import edu.ntnu.idatt2001.eirielv.units.*;
 import edu.ntnu.idatt2001.eirielv.simulation.Army;
 import edu.ntnu.idatt2001.eirielv.simulation.Battle;
@@ -44,7 +45,7 @@ public class BattleTest {
 
         Battle battle = new Battle(armyOne, armyTwo);
         //Assert
-         assertNotNull(battle.simulate());
+         assertNotNull(battle.simulate(TerrainType.PLAINS));
     }
 
     @Test

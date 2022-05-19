@@ -1,5 +1,6 @@
 package units;
 
+import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -132,39 +133,66 @@ public class CavalryUnitTest {
     @Nested
     class getAttackbonus_gives_expected_values {
         @Test
-        public void attackBonus_is_6_with_first_attack() {
+        public void attackBonus_is_6_with_first_attack_if_terrain_is_NOT_forest() {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            TerrainType terrainType = TerrainType.HILL;
             //act
             int expectedAttackBonus = 6;
-            int attackBonus = cavalryUnit.getAttackBonus();
+            int attackBonus = cavalryUnit.getAttackBonus(terrainType);
             //assert
             assertEquals(expectedAttackBonus, attackBonus);
         }
 
 
         @Test
-        public void attackBonus_is_2_after_first_attack() {
+        public void attackBonus_is_2_after_first_attack_if_terrain_is_NOT_forest() {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            TerrainType terrainType = TerrainType.HILL;
             //act
             int expectedAttackBonus = 2;
-            cavalryUnit.getAttackBonus();
-            int attackBonus = cavalryUnit.getAttackBonus();
+            cavalryUnit.getAttackBonus(terrainType);
+            int attackBonus = cavalryUnit.getAttackBonus(terrainType);
+            //assert
+            assertEquals(expectedAttackBonus, attackBonus);
+        }
+        @Test
+        public void attackBonus_is_5_after_first_attack_when_terrain_is_forest(){
+            //arrange
+            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            TerrainType terrainType = TerrainType.PLAINS;
+            //act
+            int expectedAttackBonus = 4;
+            cavalryUnit.getAttackBonus(terrainType);
+            int attackBonus = cavalryUnit.getAttackBonus(terrainType);
             //assert
             assertEquals(expectedAttackBonus, attackBonus);
         }
     }
 
     @Nested
-    class getResistbonus_gives_expected_values {
+    class getResistbonus_gives_expected_values{
         @Test
-        public void resistBonus_equals_1() {
+        public void resistBonus_equals_1_if_terrain_is_NOT_forest() {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            TerrainType terrainType = TerrainType.HILL;
             //act
             int expectedResistanceBonus = 1;
-            int resistanceBonus = cavalryUnit.getResistBonus();
+            int resistanceBonus = cavalryUnit.getResistBonus(terrainType);
+            //assert
+            assertEquals(expectedResistanceBonus, resistanceBonus);
+        }
+
+        @Test
+        public void resistBonus_equals_0_if_terrain_is_forest() {
+            //arrange
+            CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            TerrainType terrainType = TerrainType.FOREST;
+            //act
+            int expectedResistanceBonus = 0;
+            int resistanceBonus = cavalryUnit.getResistBonus(terrainType);
             //assert
             assertEquals(expectedResistanceBonus, resistanceBonus);
         }
