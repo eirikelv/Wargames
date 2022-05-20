@@ -27,7 +27,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>src/main/java/edu/ntnu/idatt1002/g106/handballapp/finalprod/controller/HandballApplication.java</mainClass>
+                    <mainClass>src/main/java/edu/ntnu/idatt2001/eirielv/controller/WargamesGUI.java</mainClass>
                 </configuration>
             </plugin>
         </plugins>
@@ -56,12 +56,12 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>17.0.2</version>
+            <version>18.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>17.0.2</version>
+            <version>18.0.1</version>
         </dependency>
 
     </dependencies>
