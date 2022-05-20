@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2001.eirielv.simulation;
 
+import edu.ntnu.idatt2001.eirielv.units.UnitType;
+
 /**
  * This is a unit class that works as a blueprint for all future units and their methods and variables
  * @author Eirik Elvestad
@@ -10,6 +12,8 @@ public abstract class Unit {
     private int health;
     private int attack;
     private int armor;
+
+    private UnitType unitType;
 
     /**
      * this is a constructor for the unit class that defines how a unit should look and its variables
@@ -28,8 +32,9 @@ public abstract class Unit {
             if(this.attack < 0) throw new IllegalArgumentException("Attack value is lower than 0, not valid");
         this.armor = armor;
             if(this.armor < 0) throw new IllegalArgumentException("Armor value is lower than 0, not valid");
-
     }
+
+
 
     /**
      * This method simulates an attack on an opponent. When an opponent is attacked, then the health of the opponent is
@@ -94,6 +99,19 @@ public abstract class Unit {
         this.health = health;
     }
 
+    /**
+     * TODO legg til javadoc
+     * @param unitType
+     */
+    public void setUnitType(UnitType unitType){this.unitType = unitType;}
+
+    /**
+     * TODO legg til javadoc
+     * @return
+     */
+    public UnitType getUnitType(){
+        return unitType;
+    }
     /**
      * a toString method that prints out the statistics of a unit
      * @return string of the units statistic by name health attack and armor

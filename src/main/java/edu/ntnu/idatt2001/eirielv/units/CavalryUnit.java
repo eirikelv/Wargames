@@ -20,6 +20,7 @@ public class CavalryUnit extends Unit {
      */
     public CavalryUnit(String name, int health, int attack, int armor) {
         super(name, health, attack, armor);
+        setUnitType(UnitType.CAVALRYUNIT);
     }
 
     /**
@@ -30,6 +31,7 @@ public class CavalryUnit extends Unit {
      */
     public CavalryUnit(String name, int health) {
         super(name, health, 20, 12);
+        setUnitType(UnitType.CAVALRYUNIT);
     }
 
     /**
@@ -63,5 +65,6 @@ public class CavalryUnit extends Unit {
         if(terrainType == TerrainType.FOREST) return 0;
         return 1;
     }
+
 
 }

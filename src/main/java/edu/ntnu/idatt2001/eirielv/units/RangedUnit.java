@@ -23,6 +23,7 @@ public class RangedUnit extends Unit {
      */
     public RangedUnit(String name, int health, int attack, int armor) {
         super(name, health, attack, armor);
+        setUnitType(UnitType.RANGEDUNIT);
     }
 
     /**
@@ -33,6 +34,7 @@ public class RangedUnit extends Unit {
      */
     public RangedUnit(String name, int health) {
         super(name,health, 15, 8);
+        setUnitType(UnitType.RANGEDUNIT);
     }
 
     /**

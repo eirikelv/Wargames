@@ -19,6 +19,7 @@ public class InfantryUnit extends Unit {
      */
     public InfantryUnit(String name, int health, int attack, int armor){
         super(name, health, attack, armor);
+        setUnitType(UnitType.INFANTRYUNIT);
     }
 
     /**
@@ -29,6 +30,7 @@ public class InfantryUnit extends Unit {
      */
     public InfantryUnit(String name, int health) {
         super(name, health, 15, 10);
+        setUnitType(UnitType.INFANTRYUNIT);
     }
 
     /**

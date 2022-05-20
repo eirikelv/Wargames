@@ -9,7 +9,7 @@ import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
  * @author Eirik Elvestad
  */
 public class CommanderUnit extends CavalryUnit{
-
+    UnitType unitType;
     private int attackedCount = 0; // how many times the unit has been attacked
 
     /**
@@ -21,6 +21,7 @@ public class CommanderUnit extends CavalryUnit{
      */
     public CommanderUnit(String name, int health, int attack, int armor) {
         super(name, health, attack, armor);
+        setUnitType(UnitType.COMMANDERUNIT);
     }
 
     /**
@@ -31,6 +32,7 @@ public class CommanderUnit extends CavalryUnit{
      */
     public CommanderUnit(String name, int health) {
         super(name, health, 25, 15);
+        setUnitType(UnitType.COMMANDERUNIT);
     }
 
     /**
