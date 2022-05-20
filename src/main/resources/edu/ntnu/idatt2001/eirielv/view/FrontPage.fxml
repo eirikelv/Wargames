@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="866.0" prefWidth="1300.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.ntnu.idatt2001.eirielv.controller.FrontPageController">
+   <children>
+      <ImageView fitHeight="866.0" fitWidth="1300.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../pictures/Battlefield.jpeg" />
+         </image>
+      </ImageView>
+      <GridPane alignment="CENTER" focusTraversable="true" prefHeight="866.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="343.435302734375" minWidth="122.92658996582031" prefWidth="122.92658996582031" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="791.5734100341797" minWidth="10.0" prefWidth="791.5734100341797" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="365.16436767578125" minWidth="10.0" prefWidth="220.74127197265625" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="451.06292724609375" minHeight="10.0" prefHeight="265.5804138183594" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="439.1957702636719" minHeight="10.0" prefHeight="347.2552490234375" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="505.74822998046875" minHeight="10.0" prefHeight="267.7447509765625" vgrow="ALWAYS" />
+        </rowConstraints>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="272.0" smooth="false" stroke="#fffdfd00" strokeType="INSIDE" width="44.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+               <fill>
+                  <RadialGradient centerX="0.5" cycleMethod="REPEAT" focusDistance="-0.028901734104046284" radius="0.45375722543352603">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.4470588266849518" green="0.3607843220233917" blue="0.25882354378700256" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.5803921818733215" green="0.4588235318660736" blue="0.3333333432674408" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="272.0" opacity="0.99" stroke="#fffdfd00" strokeType="INSIDE" width="44.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+               <fill>
+                  <RadialGradient centerX="0.5" cycleMethod="REPEAT" focusDistance="-0.028901734104046284" radius="0.45375722543352603">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.4470588266849518" green="0.3607843220233917" blue="0.25882354378700256" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.5803921818733215" green="0.4588235318660736" blue="0.3333333432674408" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="260.0" stroke="#ffffff00" strokeType="INSIDE" width="517.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <fill>
+                  <RadialGradient centerX="0.12326869806094187" centerY="0.3087885985748218" cycleMethod="REPEAT" radius="0.07225433526011563">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.007532956685499058">
+                           <color>
+                              <Color red="0.2763157784938812" green="0.2558479607105255" blue="0.2558479607105255" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.10922787193973635">
+                           <color>
+                              <Color red="0.6842105388641357" green="0.5866471529006958" blue="0.47514620423316956" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.23237450648618163">
+                           <color>
+                              <Color red="0.5789473652839661" green="0.459762841463089" blue="0.3323586881160736" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.5803921818733215" green="0.4588235318660736" blue="0.3333333432674408" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="          The           War Games" textAlignment="CENTER" wrappingWidth="519.0841064453125" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <font>
+                  <Font name="Impact" size="100.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.009501187648456033">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.6184210777282715" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.007532956685499058">
+                           <color>
+                              <Color red="0.6184210777282715" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.30936744194939153">
+                           <color>
+                              <Color red="0.30263158679008484" green="0.16532650589942932" blue="0.16532650589942932" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.5084745762711864">
+                           <color>
+                              <Color red="0.7254902124404907" green="0.14901961386203766" blue="0.08235294371843338" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.711864406779661">
+                           <color>
+                              <Color red="0.06578947603702545" green="0.0347222238779068" blue="0.0347222238779068" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7254902124404907" green="0.14901961386203766" blue="0.08235294371843338" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="243.0" layoutX="92.0" layoutY="-3.0" stroke="#ffffff00" strokeType="INSIDE" width="605.0" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="95.0" AnchorPane.topAnchor="-3.0">
+                     <fill>
+                        <RadialGradient centerX="0.7991689750692521" centerY="0.8123515439429929" cycleMethod="REPEAT" radius="0.08381502890173409">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.007532956685499058">
+                                 <color>
+                                    <Color red="0.2763157784938812" green="0.2558479607105255" blue="0.2558479607105255" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.10922787193973635">
+                                 <color>
+                                    <Color red="0.6842105388641357" green="0.5866471529006958" blue="0.47514620423316956" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.20600915808693493">
+                                 <color>
+                                    <Color red="0.5789473652839661" green="0.459762841463089" blue="0.3323586881160736" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.5803921818733215" green="0.4588235318660736" blue="0.3333333432674408" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </fill>
+                  </Rectangle>
+                  <HBox alignment="CENTER" layoutX="94.0" layoutY="-21.0" prefHeight="282.0" prefWidth="603.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="95.0" AnchorPane.topAnchor="-21.0">
+                     <children>
+                        <ImageView id="tutorialImage" fitHeight="321.0" fitWidth="204.0" onMouseClicked="#goToTutorial" pickOnBounds="true" HBox.hgrow="ALWAYS">
+                           <image>
+                              <Image url="@../pictures/blueBanner.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView id="goToArmies" fitHeight="267.0" fitWidth="157.0" onMouseClicked="#goToArmies" pickOnBounds="true">
+                           <image>
+                              <Image url="@../pictures/greenBanner.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView id="goToSimulate" fitHeight="317.0" fitWidth="199.0" onMouseClicked="#goToSimulate" pickOnBounds="true" HBox.hgrow="ALWAYS">
+                           <image>
+                              <Image url="@../pictures/redBanner.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
