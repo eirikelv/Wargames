@@ -1,6 +1,5 @@
 package edu.ntnu.idatt2001.eirielv.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -35,7 +34,12 @@ public class FrontPageController implements Initializable {
 
     @FXML
     public void goToSimulate(MouseEvent event) throws IOException {
-        SwitchScene.switchScene("SimulationPage", event);
+        try {
+
+            SwitchScene.switchScene("SimulationPage", event);
+        } catch (Exception e){
+            AlertBox.alertError("You need to add Armies. Visit the page called Armies");
+        }
     }
 }
 
