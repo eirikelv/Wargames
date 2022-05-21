@@ -32,7 +32,10 @@ public class ArmyFileHandling {
      * @param armyName is the name of the army, and the name of the file
      * @return army object
      */
-    public Army getArmyFromCSVInput(String armyName) {
+    public Army getArmyFromCSVInput(String armyName) throws IOException {
+        if(armyName.isBlank()){
+            throw new IllegalArgumentException("Need armyName information to find CSV file");
+        }
         Army army = new Army(armyName);
         List<Unit> newArmy = new ArrayList<>();
         try{
@@ -47,8 +50,7 @@ public class ArmyFileHandling {
                 newArmy.add(UnitFactory.createUnit(unitType,name, health));
             }
         } catch (IOException | CsvValidationException e) {
-            e.printStackTrace();
-            System.out.println("There was a fault in the file you represented");
+            throw new IOException("There was a fault in the file you represented");
         }
         army.addAll(newArmy);
         return army;
@@ -56,14 +58,13 @@ public class ArmyFileHandling {
 
 
     /**
-     * writeUnitsToCSVFile takes in an army and. The csv file will be named as the army name. If a file with the same
-     * name already exists or the name is with special characters, the method throws illegalArgumentException.
+     * writeUnitsToCSVFile takes in an army and. The csv file will be named as the army name. If the name is with
+     * special characters, the method throws illegalArgumentException.
      * @param army is the army object that will be made to a CSV file
      */
     public void writeUnitsToCSVFile(Army army) {
         File armyCSVFile = new File(stringPath + army.getName().trim() + ".csv");
         if(invalidArmyName(army.getName())) throw new IllegalArgumentException("Name cant contain special characters");
-        if(armyCSVFile.exists()) throw new IllegalArgumentException("file already exist");
         try(FileWriter output = new FileWriter(armyCSVFile);
             CSVWriter writer = new CSVWriter(output,',',CSVWriter.NO_QUOTE_CHARACTER
                     ,CSVWriter.NO_ESCAPE_CHARACTER
