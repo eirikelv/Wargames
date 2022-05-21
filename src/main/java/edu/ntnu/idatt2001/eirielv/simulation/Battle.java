@@ -50,6 +50,26 @@ public class Battle {
     }
 
     /**
+     * TODO write javaDoc and testers
+     * @param terrainType
+     */
+    public void singleSimulate(TerrainType terrainType){
+        Unit unit1 = armyOne.getRandom();
+        Unit unit2 = armyTwo.getRandom();
+
+        unit1.attack(unit2,terrainType);
+        if(unit2.getHealth() <= 0){
+            armyTwo.remove(unit2);
+            if(armyTwo.hasUnits()){
+                unit2 = armyTwo.getRandom();
+            }
+        }
+        unit2.attack(unit1,terrainType);
+        if(unit1.getHealth() <= 0) armyOne.remove(unit1);
+
+    }
+
+    /**
      * Army getArmyOne returns one army
      * @return one army
      */
