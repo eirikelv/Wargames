@@ -4,6 +4,7 @@ import edu.ntnu.idatt2001.eirielv.simulation.Army;
 import edu.ntnu.idatt2001.eirielv.simulation.ArmyFileHandling;
 import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -66,10 +67,12 @@ public class TableDecorator {
      * @param tableView the tableView to fill information in
      */
     public static void fillTable(int colum, Army army, TableView<Unit> tableView){
-
+        tableView.refresh();
         if(colum == 3) {
-            army.getAllUnits().forEach(unit -> tableView.getItems().add(unit));
             initTable3Colum(tableView);
+            ObservableList<Unit> observablearmyList = FXCollections.observableList(new ArrayList<>());
+            observablearmyList.addAll(army.getAllUnits());
+            tableView.setItems(observablearmyList);
         }
         else{
             initTable5Colum(tableView);
@@ -85,7 +88,7 @@ public class TableDecorator {
      */
     public static void fillListView(Army army, ListView<String> armiesListView) throws IOException {
         armiesListView.getItems().clear();
-        List<String> armyList = new ArrayList<>();
+        List<String> armyList = FXCollections.observableList(new ArrayList<>());
 
         ArmyFileHandling armyFileHandling = new ArmyFileHandling();
         String path = armyFileHandling.getFilePath(army.getName());
