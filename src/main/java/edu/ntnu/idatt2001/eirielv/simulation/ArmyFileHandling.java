@@ -92,4 +92,16 @@ public class ArmyFileHandling {
         Matcher matcher = pattern.matcher(name);
         return matcher.find();
     }
+
+    /**
+     * This method receives a armyName and returns the path of the csv file to the army
+     * @param armyName name of a army represented ass String
+     * @return path of a csv file
+     */
+    public String getFilePath(String armyName){
+        if(armyName.isBlank()) throw new IllegalArgumentException("Write inn a armyName");
+        File pathFile = new File(stringPath + armyName + ".csv");
+        if(!pathFile.exists()) throw new IllegalArgumentException("file don't exist");
+        return pathFile.getAbsolutePath();
+    }
 }
