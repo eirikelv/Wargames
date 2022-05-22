@@ -4,6 +4,7 @@ import edu.ntnu.idatt2001.eirielv.units.CavalryUnit;
 import edu.ntnu.idatt2001.eirielv.units.CommanderUnit;
 import edu.ntnu.idatt2001.eirielv.units.InfantryUnit;
 import edu.ntnu.idatt2001.eirielv.units.RangedUnit;
+import javafx.collections.FXCollections;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class Army {
         this.name = name;
         if(name.isBlank()) throw new IllegalArgumentException("Name cant't be blank");
         if(name.isEmpty()) throw new IllegalArgumentException("Name can't be empty");
-        this.units = new ArrayList<Unit>();
+        this.units = FXCollections.observableList(new ArrayList<>());
     }
 
     /**
@@ -40,7 +41,7 @@ public class Army {
         this.name = name;
         if(name.isBlank()) throw new IllegalArgumentException("Name cant't be blank");
         if(name.isEmpty()) throw new IllegalArgumentException("Name can't be empty");
-        this.units = units;
+        this.units = FXCollections.observableList(units);
     }
 
 
