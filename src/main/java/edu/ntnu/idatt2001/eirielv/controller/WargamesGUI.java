@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 public class WargamesGUI extends Application {
 
+    private static Stage stage;
+
     public static void main(String[] args){
         launch(args);
     }
@@ -18,6 +20,7 @@ public class WargamesGUI extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try {
+            this.stage=stage;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/edu/ntnu/idatt2001/eirielv/view/FrontPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1300, 866);
             stage.setTitle("The War Games");
@@ -36,5 +39,9 @@ public class WargamesGUI extends Application {
     @Override
     public void stop() throws Exception{
         super.stop();
+    }
+
+    public static Stage getStage(){
+        return stage;
     }
 }
