@@ -3,22 +3,17 @@ package edu.ntnu.idatt2001.eirielv.controller;
 import edu.ntnu.idatt2001.eirielv.simulation.Army;
 import edu.ntnu.idatt2001.eirielv.simulation.ArmyFileHandling;
 import edu.ntnu.idatt2001.eirielv.simulation.Unit;
-import edu.ntnu.idatt2001.eirielv.units.UnitType;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 
 public class ArmiesController implements Initializable {
@@ -26,72 +21,96 @@ public class ArmiesController implements Initializable {
     @FXML
     private TableView<Unit> armiesTable1;
     @FXML
-    private TableColumn<UnitType, UnitType> unitTypeColum1;
-    @FXML
-    private TableColumn<Unit, String> unitNameColum1;
-    @FXML
-    private TableColumn<Unit, Integer> unitHealthColum1;
-    @FXML
-    private TableColumn<Unit, Integer> unitAttackColum1;
-    @FXML
-    private TableColumn<Unit, Integer> unitDefenceColum1;
-
-    @FXML
     private TableView<Unit> armiesTable2;
-    @FXML
-    private TableColumn<UnitType, UnitType> unitTypeColum2;
-    @FXML
-    private TableColumn<Unit, String> unitNameColum2;
-    @FXML
-    private TableColumn<Unit, Integer> unitHealthColum2;
-    @FXML
-    private TableColumn<Unit, Integer> unitAttackColum2;
-    @FXML
-    private TableColumn<Unit, Integer> unitDefenceColum2;
 
     @FXML
-    private Button importArmy1;
+    private TextField TextFieldArmyName2;
     @FXML
     private TextField TextFieldArmyName1;
 
     @FXML
+    private Button importArmy1;
+    @FXML
     private Button importArmy2;
     @FXML
-    private TextField TextFieldArmyName2;
+    private Button addUnits1;
+    @FXML
+    private Button addUnits2;
 
     @FXML
     private Text textArmyName1;
-
     @FXML
     private Text textArmyName2;
 
     @FXML
     private ListView<String> armiesList1;
-
     @FXML
     private ListView<String> armiesList2;
 
-    /**
-     * @param url
+    /** Initialize the controller, and sets the tableview and listView for the scene
+     * @param url is the url represented by Url
      * @param resourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        checkForSavedArmies();
+       TableDecorator.initTable5Colum(armiesTable1);
+       TableDecorator.initTable5Colum(armiesTable2);
+       if(Singleton.getInstance().getArmy1() != null && Singleton.getInstance().getArmy2() != null){
+           Army army1 = Singleton.getInstance().getArmy1();
+           Army army2 = Singleton.getInstance().getArmy2();
+           TableDecorator.fillTable(5, army1, armiesTable1);
+           try {
+                TableDecorator.fillListView(army1, armiesList1);
+           } catch (IOException e) {
+               throw new RuntimeException(e);
+           }
+           TableDecorator.fillTable(5, army2, armiesTable2);
+           try {
+               TableDecorator.fillListView(army2, armiesList2);
+           } catch (IOException e) {
+               throw new RuntimeException(e);
+           }
+       }
     }
 
+    /**
+     * addUnits1 shows the view for adding a unit
+     * @param mouseEvent checks if the button "addUnit1" is bressed by the mouse
+     * @throws IOException
+     */
     @FXML
-    public void addUnits(MouseEvent event) throws IOException {
-        SwitchScene.createNewStage("AddUnitsWindow");
+    public void addUnits1(MouseEvent mouseEvent) throws IOException {
+        SwitchScene.createNewStage("AddUnitsWindow1");
+
     }
 
+    /**
+     * addUnits2 shows the view for adding a unit
+     * @param mouseEvent checks if the button "addUnit2" is bressed by the mouse
+     * @throws IOException
+     */
+    @FXML
+    public void addUnits2(MouseEvent mouseEvent) throws IOException {
+        SwitchScene.createNewStage("AddUnitsWindow2");
+    }
+
+    /**
+     * goToFrontPage takes the user to frontPage
+     * @param event checks if the button "goToFrontPage" is pressed by the mouse
+     * @throws IOException
+     */
     @FXML
     public void goToFrontPage(MouseEvent event) throws IOException {
         SwitchScene.switchScene("FrontPage",event);
     }
 
+    /**
+     * goToSimulationPage saves army1 and army2 and sends the user to simulation page.
+     * @param event checks if the button "Save" is bressed by the mouse
+     * @throws IOException
+     */
     @FXML
-    public void goToSimulationPageAndSaveData(MouseEvent event) throws IOException {
+    private void goToSimulationPage(MouseEvent event) throws IOException {
         if(armiesTable1.getItems().size() == 0 && armiesTable2.getItems().size() == 0){
             AlertBox.alertError("You need to add two armies");
         }
@@ -109,39 +128,30 @@ public class ArmiesController implements Initializable {
                 AlertBox.alertError(e.getMessage());
             }
         }
-
     }
 
     /**
-     * This method changes army1 from csv file, and represents the army fetched from csv, in a tableview. If the text
-     * field TextFieldArmyName1 don't have text, an alertbox will announce an alerterror, so the user knows what to do.
+     * changeArmy1 takes inn armyName from textField and changes army1 from csv file, and represents the army fetched
+     * from csv, in a tableview. If the textfield TextFieldArmyName1 don't have text, an alertbox will announce an
+     * alerterror, so the user knows what to do.
+     * @throws IOException
      */
-    public void changeArmy1(){
+    public void changeArmy1() throws IOException {
         if(TextFieldArmyName1.hasProperties()){
+            armiesTable1.refresh();
             ArmyFileHandling armyFileHandler = new ArmyFileHandling();
             Army csvArmy1;
-            List<String> army1Information = new ArrayList<>();
-            List<Unit> unitList1;
+
             try{
                 csvArmy1 = armyFileHandler.getArmyFromCSVInput(TextFieldArmyName1.getText());
-            } catch (IOException e){
+            }catch (IOException e){
                 AlertBox.alertError(e.getMessage());
                 return;
             }
-            army1Information.add(0, csvArmy1.getName());
-            army1Information.add(1, "CavalryUnits: "+ csvArmy1.getCavalryUnits().size());
-            army1Information.add(2, "CommanderUnits: "+ csvArmy1.getCommanderUnits().size());
-            army1Information.add(3, "InfantryUnits: "+ csvArmy1.getInfantryUnits().size());
-            army1Information.add(4, "RangedUnits: "+ csvArmy1.getRangedUnits().size());
-            armiesList1.setItems(FXCollections.observableList(army1Information));
+            Singleton.getInstance().setArmy1(csvArmy1);
 
-            unitList1 = csvArmy1.getAllUnits();
-            unitNameColum1.setCellValueFactory(new PropertyValueFactory<>("name"));
-            unitHealthColum1.setCellValueFactory(new PropertyValueFactory<>("health"));
-            unitAttackColum1.setCellValueFactory(new PropertyValueFactory<>("attack"));
-            unitDefenceColum1.setCellValueFactory(new PropertyValueFactory<>("armor"));
-            unitTypeColum1.setCellValueFactory(new PropertyValueFactory<>("unitType"));
-            armiesTable1.setItems(FXCollections.observableList(unitList1));
+            TableDecorator.fillTable(5, csvArmy1, armiesTable1);
+            TableDecorator.fillListView(csvArmy1, armiesList1);
             textArmyName1.setText(csvArmy1.getName());
 
 
@@ -151,35 +161,26 @@ public class ArmiesController implements Initializable {
     }
 
     /**
-     * This method changes army2 from csv file, and represents the army fetched from csv, in a tableview. If the text
-     *      * field TextFieldArmyName1 don't have text, an alertbox will announce an alerterror, so the user knows what to do.
+     * changeArmy2 takes inn armyName from textField and changes army2 from csv file, and represents the army fetched
+     * from csv, in a tableview. If the textfield TextFieldArmyName2 don't have text, an alertbox will announce an
+     * alerterror, so the user knows what to do.
+     * @throws IOException
      */
-    public void changeArmy2(){
+    public void changeArmy2() throws IOException {
+
         if(TextFieldArmyName2.hasProperties()){
             ArmyFileHandling armyFileHandler = new ArmyFileHandling();
             Army csvArmy2;
-            List<String> army2Information = new ArrayList<>();
-            List<Unit> unitList2;
+
             try{
                 csvArmy2 = armyFileHandler.getArmyFromCSVInput(TextFieldArmyName2.getText());
             } catch (IOException e){
                 AlertBox.alertError(e.getMessage());
                 return;
             }
-            army2Information.add(0, csvArmy2.getName());
-            army2Information.add(1, "CavalryUnits: "+ csvArmy2.getCavalryUnits().size());
-            army2Information.add(2, "CommanderUnits: "+ csvArmy2.getCommanderUnits().size());
-            army2Information.add(3, "InfantryUnits: "+ csvArmy2.getInfantryUnits().size());
-            army2Information.add(4, "RangedUnits: "+ csvArmy2.getRangedUnits().size());
-            armiesList2.setItems(FXCollections.observableList(army2Information));
-
-            unitList2 = csvArmy2.getAllUnits();
-            unitNameColum2.setCellValueFactory(new PropertyValueFactory<>("name"));
-            unitHealthColum2.setCellValueFactory(new PropertyValueFactory<>("health"));
-            unitAttackColum2.setCellValueFactory(new PropertyValueFactory<>("attack"));
-            unitDefenceColum2.setCellValueFactory(new PropertyValueFactory<>("armor"));
-            unitTypeColum2.setCellValueFactory(new PropertyValueFactory<>("unitType"));
-            armiesTable2.setItems(FXCollections.observableList(unitList2));
+            Singleton.getInstance().setArmy2(csvArmy2);
+            TableDecorator.fillTable(5, csvArmy2, armiesTable2);
+            TableDecorator.fillListView(csvArmy2, armiesList2);
             textArmyName2.setText(csvArmy2.getName());
         }
         else AlertBox.alertError("You need to type inn army name to search for army, the CSV should have the same name" +
@@ -187,60 +188,37 @@ public class ArmiesController implements Initializable {
     }
 
     /**
+     * This page imports chosen file to armyCSVfiles in resources
+     * @throws IOException
+     */
+    @FXML
+    private void importFile() throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        System.out.println("penis");
+        Files.copy(file.toPath(), new File("src/main/resources/edu/ntnu/idatt2001/eirielv/armycsvfiles").toPath());
+    }
+
+
+    /**
      *This method gets information from Tableview, and makes an army of the tableview. Then it passes the information
      * to Singleton to further use it in simulation
      */
-    public void saveArmies(){
-        List<Unit> army1List;
-        List<Unit> army2List;
+    private void saveArmies(){
         Army army1;
         Army army2;
+        ArmyFileHandling armyFileHandling = new ArmyFileHandling();
         try {
-            army1 = new Army(TextFieldArmyName1.getText());
-            army2 = new Army(TextFieldArmyName2.getText());
-        }catch(Exception e){
-            AlertBox.alertError(e.getMessage());
+            army1 = armyFileHandling.getArmyFromCSVInput(TextFieldArmyName1.getText());
+            army2 = armyFileHandling.getArmyFromCSVInput(TextFieldArmyName2.getText());
+            ;
+        } catch (Exception e) {
+            AlertBox.alertError(e.getMessage() + "\n If there already exists armies, disregard this error");
             return;
         }
-        army1List = this.armiesTable1.getItems();
-        army2List = this.armiesTable2.getItems();
-        army1.addAll(army1List);
-        army2.addAll(army2List);
-        Singleton.getInstance().setArmyName1(army1.getName());
-        Singleton.getInstance().setArmyName2(army2.getName());
+        Singleton.getInstance().setArmy1(army1);
+        Singleton.getInstance().setArmy2(army2);
     }
 
-    public void checkForSavedArmies(){
-        if(Singleton.getInstance().getArmyName1() != null) {
-            ArmyFileHandling armyFileHandler = new ArmyFileHandling();
-            Army csvArmy1 = null;
-            Army csvArmy2 = null;
-            List<Unit> unitList1;
-            List<Unit> unitList2;
-            try {
-                csvArmy1 = armyFileHandler.getArmyFromCSVInput(Singleton.getInstance().getArmyName1());
-                csvArmy2 = armyFileHandler.getArmyFromCSVInput(Singleton.getInstance().getArmyName2());
-            }catch (Exception e){
-                AlertBox.alertError(e.getMessage());
-            }
-            unitList1 = csvArmy1.getAllUnits();
-            unitList2 = csvArmy2.getAllUnits();
-
-            unitNameColum1.setCellValueFactory(new PropertyValueFactory<>("name"));
-            unitHealthColum1.setCellValueFactory(new PropertyValueFactory<>("health"));
-            unitAttackColum1.setCellValueFactory(new PropertyValueFactory<>("attack"));
-            unitDefenceColum1.setCellValueFactory(new PropertyValueFactory<>("armor"));
-            unitTypeColum1.setCellValueFactory(new PropertyValueFactory<>("unitType"));
-            armiesTable1.setItems(FXCollections.observableList(unitList1));
-            textArmyName1.setText(csvArmy1.getName());
-
-            unitNameColum2.setCellValueFactory(new PropertyValueFactory<>("name"));
-            unitHealthColum2.setCellValueFactory(new PropertyValueFactory<>("health"));
-            unitAttackColum2.setCellValueFactory(new PropertyValueFactory<>("attack"));
-            unitDefenceColum2.setCellValueFactory(new PropertyValueFactory<>("armor"));
-            unitTypeColum2.setCellValueFactory(new PropertyValueFactory<>("unitType"));
-            armiesTable2.setItems(FXCollections.observableList(unitList2));
-            textArmyName2.setText(csvArmy2.getName());
-        }
-    }
+    //private void createNewArmy
 }
