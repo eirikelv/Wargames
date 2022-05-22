@@ -42,7 +42,7 @@ public abstract class Unit {
      * @param opponent The Unit opponent is the opponent receiving the attack
      */
     public void attack(Unit opponent,TerrainType terrainType){
-        int newOpponentHealth = opponent.getHealth() - (this.attack + this.getAttackBonus(terrainType)) +
+        int newOpponentHealth = (opponent.getHealth()) - (this.attack + this.getAttackBonus(terrainType)) +
                 (opponent.getArmor() + opponent.getResistBonus(terrainType));
         opponent.setHealth(newOpponentHealth);
     }
