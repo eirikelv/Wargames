@@ -18,7 +18,7 @@ public class ArmyFileHandlingTest {
 
         @Test
         public void reads_correct_information_from_a_csv_file_and_makes_a_army(){
-            Army armyOne = new Army("HumanArmy");
+            Army armyOne = new Army("testersHumanArmy");
             ArmyFileHandling armyFileHandling = new ArmyFileHandling();
             List<Unit> expectedInformation = new ArrayList<>();
 
@@ -35,18 +35,18 @@ public class ArmyFileHandlingTest {
         @Test
         public void does_not_read_incorrect_information_from_a_csv_file(){
             assertThrows(IllegalArgumentException.class, () -> {
-                Army armyOne = new Army("WrongInformation");
+                Army armyOne = new Army("testersWrongInformation");
                 ArmyFileHandling armyFileHandling = new ArmyFileHandling();
-                    armyFileHandling.getArmyFromCSVInput("WrongInformation");
+                    armyFileHandling.getArmyFromCSVInput("testersWrongInformation");
             });
         }
 
         @Test
         public void throws_exception_if_the_unitType_does_not_exist(){
             assertThrows(IllegalArgumentException.class, () -> {
-                Army armyOne = new Army("WrongUnitType");
+                Army armyOne = new Army("testersWrongUnitType");
                 ArmyFileHandling armyFileHandling = new ArmyFileHandling();
-                armyFileHandling.getArmyFromCSVInput("WrongUnitType");
+                armyFileHandling.getArmyFromCSVInput("testersWrongUnitType");
             });
         }
 
