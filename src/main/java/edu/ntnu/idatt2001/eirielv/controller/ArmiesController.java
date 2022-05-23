@@ -73,6 +73,17 @@ public class ArmiesController implements Initializable {
        }
     }
 
+    @FXML
+    public void createNewArmy1(MouseEvent mouseEvent) throws IOException {
+        SwitchScene.createNewStage("CreateNewArmy1");
+    }
+
+    @FXML
+    public void createNewArmy2(MouseEvent mouseEvent) throws IOException {
+        SwitchScene.createNewStage("CreateNewArmy2");
+    }
+
+
     /**
      * addUnits1 shows the view for adding a unit
      * @param mouseEvent checks if the button "addUnit1" is bressed by the mouse

@@ -150,7 +150,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                                                                      <children>
-                                                                        <Button fx:id="newArmy1" mnemonicParsing="false" prefHeight="65.0" prefWidth="161.0" style="-fx-border-color: #000000;" text="&lt; Create new army" VBox.vgrow="ALWAYS">
+                                                                        <Button fx:id="newArmy1" mnemonicParsing="false" onMouseClicked="#createNewArmy1" prefHeight="65.0" prefWidth="161.0" style="-fx-border-color: #000000;" text="&lt; Create new army" VBox.vgrow="ALWAYS">
                                                                            <font>
                                                                               <Font name="Georgia" size="16.0" />
                                                                            </font>
@@ -176,7 +176,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                                                                      <children>
-                                                                        <Button fx:id="newArmy2" mnemonicParsing="false" prefHeight="65.0" prefWidth="161.0" style="-fx-border-color: #000000;" text="Create new Army &gt;" VBox.vgrow="ALWAYS">
+                                                                        <Button fx:id="newArmy2" mnemonicParsing="false" onMouseClicked="#createNewArmy2" prefHeight="65.0" prefWidth="161.0" style="-fx-border-color: #000000;" text="Create new Army &gt;" VBox.vgrow="ALWAYS">
                                                                            <font>
                                                                               <Font name="Georgia" size="16.0" />
                                                                            </font>
