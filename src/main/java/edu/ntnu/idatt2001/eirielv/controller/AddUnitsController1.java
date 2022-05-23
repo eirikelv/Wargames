@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -36,13 +37,14 @@ public class AddUnitsController1 implements Initializable {
     @FXML
     public Button buttonAddUnit;
 
-    /**
-     * @param url
+    /** Initializes the controller and sets value to checkbox and tableView
+     * @param url the url represented by Url
      * @param resourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        csvToTableView();
+        Army army1 = Singleton.getInstance().getArmy1();
+        TableDecorator.fillTable(3, army1, tableViewArmy);
         checkBoxUnitType.getItems().add(0, UnitType.INFANTRYUNIT);
         checkBoxUnitType.getItems().add(1, UnitType.CAVALRYUNIT);
         checkBoxUnitType.getItems().add(2, UnitType.COMMANDERUNIT);
@@ -50,23 +52,6 @@ public class AddUnitsController1 implements Initializable {
         checkBoxUnitType.setValue(UnitType.INFANTRYUNIT);
     }
 
-    public void csvToTableView() {
-        ArmyFileHandling armyFileHandler = new ArmyFileHandling();
-        Army csvArmy1;
-        List<Unit> unitList1;
-        try {
-            csvArmy1 = armyFileHandler.getArmyFromCSVInput(Singleton.getInstance().getArmyName1());
-        } catch (
-                Exception e) {
-            AlertBox.alertError(e.getMessage());
-            return;
-        }
-        unitList1 = csvArmy1.getAllUnits();
-        columName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        columHealth.setCellValueFactory(new PropertyValueFactory<>("health"));
-        columUnitType.setCellValueFactory(new PropertyValueFactory<>("unitType"));
-        tableViewArmy.setItems(FXCollections.observableList(unitList1));
-    }
 
     public void addUnit(){
         if(!textFieldHealth.hasProperties()) throw new IllegalArgumentException("Type inn health");
@@ -88,7 +73,6 @@ public class AddUnitsController1 implements Initializable {
         }catch (Exception e){
             AlertBox.alertError(e.getMessage());
         }
-        csvToTableView();
         tableViewArmy.refresh();
         textFieldQuantity.clear();
         textFieldUnitName.clear();

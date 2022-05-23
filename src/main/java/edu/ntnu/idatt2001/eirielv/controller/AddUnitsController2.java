@@ -43,7 +43,7 @@ public class AddUnitsController2 implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        csvToTableView();
+        initTableViews();
         checkBoxUnitType.getItems().add(0, UnitType.INFANTRYUNIT);
         checkBoxUnitType.getItems().add(1, UnitType.CAVALRYUNIT);
         checkBoxUnitType.getItems().add(2, UnitType.COMMANDERUNIT);
@@ -51,23 +51,16 @@ public class AddUnitsController2 implements Initializable {
         checkBoxUnitType.setValue(UnitType.INFANTRYUNIT);
     }
 
-    public void csvToTableView() {
-        ArmyFileHandling armyFileHandler = new ArmyFileHandling();
-        Army csvArmy2;
-        List<Unit> unitList2;
-        try {
-            csvArmy2 = armyFileHandler.getArmyFromCSVInput(Singleton.getInstance().getArmyName2());
-        } catch (
-                Exception e) {
-            AlertBox.alertError(e.getMessage());
-            return;
-        }
-        unitList2 = csvArmy2.getAllUnits();
-
-        columName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        columHealth.setCellValueFactory(new PropertyValueFactory<>("health"));
-        columUnitType.setCellValueFactory(new PropertyValueFactory<>("unitType"));
-        tableViewArmy.setItems(FXCollections.observableList(unitList2));
+    private void initTableViews() {
+        TableColumn<Unit, String> name = new TableColumn<>("Name");
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        TableColumn<Unit, Integer> health = new TableColumn<>("Health");
+        health.setCellValueFactory(new PropertyValueFactory<>("health"));
+        TableColumn<Unit, String> type = new TableColumn<>("UnitType");
+        type.setCellValueFactory(new PropertyValueFactory<>("unitType"));
+        tableViewArmy.getColumns().add(type);
+        tableViewArmy.getColumns().add(name);
+        tableViewArmy.getColumns().add(health);
     }
 
     public void addUnit() {
