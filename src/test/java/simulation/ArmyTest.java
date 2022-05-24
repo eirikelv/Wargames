@@ -123,7 +123,7 @@ class ArmyTest {
         Army army = new Army(name);
         army.add(knight);
         army.add(archer);
-        int expectedValue = army.getAllUnits().size();
+        int expectedValue = 1;
 
         //Act
         army.remove(archer);

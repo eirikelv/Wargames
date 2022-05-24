@@ -86,7 +86,7 @@ public class BattleTest {
         armyTwo.addAll(units2);
         Battle battle = new Battle(armyOne, armyTwo);
 
-        String expected = "armyOne vs armyTwo";
+        String expected = "armyOne VS armyTwo";
 
         //Act
         String actual = battle.toString();

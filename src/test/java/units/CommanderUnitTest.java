@@ -39,7 +39,7 @@ public class CommanderUnitTest {
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100, 25, 15);
             int expected_attack = 25;
             //act
-            int actual = commanderUnit.getHealth();
+            int actual = commanderUnit.getAttack();
             //assert
             assertEquals(expected_attack, actual);
         }
