@@ -1,37 +1,47 @@
 package edu.ntnu.idatt2001.eirielv.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class FrontPageController implements Initializable {
-
-
+/**
+ * FrontPageController is the controller for {@link SwitchScene} FrontPage
+ * @author Eirik Elvestad
+ */
+public class FrontPageController {
 
     /**
-     * @param url
-     * @param resourceBundle
+     * Initializes the controller
      */
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize() {
 
     }
 
+    /**
+     * goToTutorial takes the user to {@link SwitchScene} TutorialPage.fxml when method called by event
+     * @param event calls the method when mouse clicked
+     * @throws IOException if there is damaged information in the new scene
+     */
     @FXML
     public void goToTutorial(MouseEvent event) throws IOException {
         SwitchScene.switchScene("TutorialPage", event);
     }
 
+    /**
+     * goToArmies takes the user to {@link SwitchScene} ArmiesPage.fxml when method called by event
+     * @param event calls the method when mouse clicked
+     * @throws IOException if there is damaged information in the new scene
+     */
     @FXML
     public void goToArmies(MouseEvent event) throws IOException {
         SwitchScene.switchScene("ArmiesPage", event);
-
     }
 
+    /**
+     * goToSimulation takes the user to simulation if there is stored armies in {@link Singleton}, else it shows alerBox
+     * @param event calls the method when mouse clicked
+     * @throws IOException if there is damaged information in the new scene
+     */
     @FXML
     public void goToSimulate(MouseEvent event) throws IOException {
         try {
