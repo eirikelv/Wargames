@@ -42,6 +42,7 @@ public class CavalryUnit extends Unit {
      * unit gets 6 in attack bonus with the first attack. After that the attackbonus equals 2
      * attack bonus to illustrate this.
      * The cavalry unit also have a benefit in plains, where it gets extra attack bonus.
+     * @param terrainType is the terrain the units are fighting in
      * @return Returns the attack bonus to the cavalry unit
      */
     @Override
@@ -60,6 +61,7 @@ public class CavalryUnit extends Unit {
      *{@inheritDoc}
      * The cavalry unit has a low resistance bonus. To illustrate this, the cavalry unit gets 1 in resistance bonus.
      * The cavalry unit also has a disadvantage in forest, where the resist bonus is 0
+     * @param terrainType is the terrain the units are fighting in
      * @return Returns the resistance bonus to the cavalry unit
      */
     @Override
