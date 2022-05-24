@@ -17,23 +17,29 @@ public class CavalryUnitTest {
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100, 20, 12);
             String expected_name = "Cavalry";
             //act
-
+            String actual = cavalryUnit.getName();
             //assert
-            assertEquals(expected_name, cavalryUnit.getName());
+            assertEquals(expected_name, actual);
         }
 
         @Test
         public void health_is_a_expected_value() {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100, 20, 12);
+            int expected = 100;
+            //act
+            int actual = cavalryUnit.getHealth();
             //assert
-            assertEquals(100, cavalryUnit.getHealth());
+            assertEquals(expected, actual);
         }
 
         @Test
         public void attack_is_a_expected_value() {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100, 20, 12);
+            int expected = 20;
+            //act
+            int actual = cavalryUnit.getAttack();
             //assert
             assertEquals(20, cavalryUnit.getAttack());
         }
@@ -42,8 +48,11 @@ public class CavalryUnitTest {
         public void armor_is_a_expected_value() {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100, 20, 12);
+            int expected = 12;
+            //act
+            int actual = cavalryUnit.getArmor();
             //assert
-            assertEquals(12, cavalryUnit.getArmor());
+            assertEquals(expected,actual);
         }
     }
 
@@ -53,16 +62,23 @@ public class CavalryUnitTest {
         public void name_is_a_expected_value(){
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            String expectedName = "Cavalry";
+            //act
+            String actualName = cavalryUnit.getName();
+
             //assert
-            assertEquals("Cavalry", cavalryUnit.getName());
+            assertEquals(expectedName,actualName);
         }
 
         @Test
         public void health_is_a_expected_value() {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
+            int expected = 100;
+            //act
+            int actaul = cavalryUnit.getHealth();
             //assert
-            assertEquals(100, cavalryUnit.getHealth());
+            assertEquals(expected, actaul);
         }
     }
 
@@ -137,8 +153,8 @@ public class CavalryUnitTest {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
             TerrainType terrainType = TerrainType.HILL;
-            //act
             int expectedAttackBonus = 6;
+            //act
             int attackBonus = cavalryUnit.getAttackBonus(terrainType);
             //assert
             assertEquals(expectedAttackBonus, attackBonus);
@@ -150,8 +166,8 @@ public class CavalryUnitTest {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
             TerrainType terrainType = TerrainType.HILL;
-            //act
             int expectedAttackBonus = 2;
+            //act
             cavalryUnit.getAttackBonus(terrainType);
             int attackBonus = cavalryUnit.getAttackBonus(terrainType);
             //assert
@@ -162,8 +178,8 @@ public class CavalryUnitTest {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
             TerrainType terrainType = TerrainType.PLAINS;
-            //act
             int expectedAttackBonus = 4;
+            //act
             cavalryUnit.getAttackBonus(terrainType);
             int attackBonus = cavalryUnit.getAttackBonus(terrainType);
             //assert
@@ -178,8 +194,8 @@ public class CavalryUnitTest {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
             TerrainType terrainType = TerrainType.HILL;
-            //act
             int expectedResistanceBonus = 1;
+            //act
             int resistanceBonus = cavalryUnit.getResistBonus(terrainType);
             //assert
             assertEquals(expectedResistanceBonus, resistanceBonus);
@@ -190,15 +206,11 @@ public class CavalryUnitTest {
             //arrange
             CavalryUnit cavalryUnit = new CavalryUnit("Cavalry", 100);
             TerrainType terrainType = TerrainType.FOREST;
-            //act
             int expectedResistanceBonus = 0;
+            //act
             int resistanceBonus = cavalryUnit.getResistBonus(terrainType);
             //assert
             assertEquals(expectedResistanceBonus, resistanceBonus);
         }
-
-        /**
-         * TODO add testers for resist and attackbonus with TerrainType
-         */
     }
 }
