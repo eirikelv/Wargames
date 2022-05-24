@@ -79,26 +79,6 @@ public class ArmyFileHandlingTest {
         }
 
         @Test
-        public void throws_IllegalArgumentException_if_file_already_exists()  {
-            assertThrows(IllegalArgumentException.class, () -> {
-                Army testArmyDuplicate = new Army("testArmyDuplicate");
-                ArmyFileHandling armyFileHandling = new ArmyFileHandling();
-
-                List<Unit> units = new ArrayList<>();
-                units.add(new CavalryUnit("Knight", 15));
-                units.add(new RangedUnit("Archer", 20));
-                units.add(new InfantryUnit("Solider1", 30));
-                units.add(new CommanderUnit("Rex", 40));
-                testArmyDuplicate.addAll(units);
-
-                armyFileHandling.writeUnitsToCSVFile(testArmyDuplicate);
-                armyFileHandling.writeUnitsToCSVFile(testArmyDuplicate);
-            });
-            File testFile = new File("src/main/resources/edu/ntnu/idatt2001/eirielv/armyCSVFiles/testArmyDuplicate.csv");
-            testFile.delete();
-        }
-
-        @Test
         public void makes_a_CSV_file(){
             Army armyOne = new Army("armyOne");
             ArmyFileHandling armyFileHandling = new ArmyFileHandling();
