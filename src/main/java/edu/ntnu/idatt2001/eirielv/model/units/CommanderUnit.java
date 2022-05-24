@@ -42,6 +42,7 @@ public class CommanderUnit extends CavalryUnit{
      * commander unit gets 6 in attack bonus with the first attack. After that the attack bonus equals 2
      * attack bonus to illustrate this
      * CommanderUnit gets no benefit with terrainType
+     * @param terrainType is the terrain the units are fighting in
      * @return Returns the attack bonus to the commander unit
      */
     @Override
@@ -57,6 +58,7 @@ public class CommanderUnit extends CavalryUnit{
      *The method getResistBonus returns the resist bonus of the opponent getting attacked. The commander unit has a low
      * resistance bonus, to illustrate this the commanderunit gets 1 in resistance bonus
      * CommanderUnit gets no benefit with terrainType
+     * @param terrainType is the terrain the units are fighting in
      * @return Returns the resistancebonus of the Commander
      */
     @Override
