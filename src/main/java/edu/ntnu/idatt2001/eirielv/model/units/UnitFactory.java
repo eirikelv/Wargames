@@ -1,5 +1,5 @@
-package edu.ntnu.idatt2001.eirielv.units;
-import edu.ntnu.idatt2001.eirielv.simulation.*;
+package edu.ntnu.idatt2001.eirielv.model.units;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Unit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
  * This class is a factory class for creating units. It founds out what type of unit to make by using the
  * enum class UnitType
  * @author Eirik Elvestad
- *
  */
 public class UnitFactory {
     /**
