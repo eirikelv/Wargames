@@ -1,32 +1,32 @@
 package edu.ntnu.idatt2001.eirielv.controller;
 
-import edu.ntnu.idatt2001.eirielv.simulation.Army;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Army;
 import javafx.scene.control.Button;
 
 /**
- * Singleton.java is a class that makes information pass from one controller to another.
+ * SimulatorSingleton.java is a class that makes information pass from one controller to another.
  * This method is retrieved from GeeksForGeeks, 21.05.2022 from
  * <a href="https://www.geeksforgeeks.org/singleton-design-pattern/">GeeksForGeeks</a>
  */
-public class Singleton {
+public class SimulatorSingleton {
     private Army army1;
     private Army army2;
     private Button button;
-    private static Singleton obj;
+    private static SimulatorSingleton obj;
 
     /**
-     * this is the empty constructor for the Singleton class
+     * this is the empty constructor for the SimulatorSingleton class
      */
-    private Singleton() {
+    private SimulatorSingleton() {
     }
 
     /**
      * Method for getInstance of singleton, this makes it possible to pass singletons
      * @return the singleton object
      */
-    public static Singleton getInstance() {
+    public static SimulatorSingleton getInstance() {
         if (obj==null)
-            obj = new Singleton();
+            obj = new SimulatorSingleton();
         return obj;
     }
 
