@@ -35,7 +35,7 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <VBox prefHeight="860.0" prefWidth="1295.0">
+            <VBox prefHeight="860.0" prefWidth="1295.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="216.0" prefWidth="1295.0">
                      <children>
@@ -43,26 +43,21 @@
                            <children>
                               <HBox prefHeight="91.0" prefWidth="1320.0" style="-fx-background-color: BEBEBE;" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="684.0" HBox.hgrow="ALWAYS">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="253.0" HBox.hgrow="ALWAYS">
                                        <children>
                                           <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <ButtonBar prefHeight="76.0" prefWidth="736.0">
+                                                <ButtonBar prefHeight="76.0" prefWidth="736.0" HBox.hgrow="ALWAYS">
                                                    <buttons>
                                                       <Button fx:id="buttonRunSimulation" mnemonicParsing="false" onMouseClicked="#simulate" prefHeight="49.0" prefWidth="120.0" style="-fx-border-color: #000000;" text="Run Simulation">
                                                          <font>
-                                                            <Font name="Georgia" size="13.0" />
-                                                         </font>
-                                                      </Button>
-                                                      <Button fx:id="buttonRunAnimation" mnemonicParsing="false" prefHeight="49.0" prefWidth="174.0" style="-fx-border-color: #000000;" text="Run w/Animation">
-                                                         <font>
-                                                            <Font name="Georgia" size="13.0" />
+                                                            <Font name="Georgia" size="14.0" />
                                                          </font>
                                                       </Button>
                                                       <ChoiceBox fx:id="choiceBoxTerrain" prefHeight="49.0" prefWidth="150.0" style="-fx-border-color: #000000;" />
-                                                      <Button fx:id="buttonReset" mnemonicParsing="false" prefHeight="49.0" prefWidth="120.0" style="-fx-border-color: #000000;" text="Reset">
+                                                      <Button fx:id="buttonReset" mnemonicParsing="false" onMouseClicked="#resetSimulation" prefHeight="49.0" prefWidth="120.0" style="-fx-border-color: #000000;" text="Reset">
                                                          <font>
-                                                            <Font name="Georgia" size="13.0" />
+                                                            <Font name="Georgia" size="15.0" />
                                                          </font>
                                                       </Button>
                                                    </buttons>
@@ -73,7 +68,29 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="91.0" prefWidth="573.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Button mnemonicParsing="false" onMouseClicked="#goToFrontPage" prefHeight="49.0" prefWidth="120.0" text="Main Menu" HBox.hgrow="ALWAYS" />
+                                          <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <HBox prefHeight="91.0" prefWidth="301.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Button mnemonicParsing="false" onMouseClicked="#goToArmiesPage" prefHeight="49.0" prefWidth="124.0" style="-fx-border-color: #000000; -fx-border-width: 1;" text="Armies" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="Georgia" size="15.0" />
+                                                         </font>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="91.0" prefWidth="25.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Button mnemonicParsing="false" onMouseClicked="#goToFrontPage" prefHeight="49.0" prefWidth="120.0" style="-fx-border-color: #000000; -fx-border-width: 1;" text="Main Menu" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="Georgia" size="15.0" />
+                                                         </font>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
                                        </children>
                                     </HBox>
                                  </children>
