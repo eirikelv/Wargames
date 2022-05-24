@@ -17,33 +17,42 @@ public class RangedUnitTest {
             RangedUnit rangedUnit = new RangedUnit("Archer", 100, 15, 8);
             String expected_name = "Archer";
             //act
-
+            String actual = rangedUnit.getName();
             //assert
-            assertEquals(expected_name, rangedUnit.getName());
+            assertEquals(expected_name, actual);
         }
 
         @Test
         public void health_is_a_expected_value() {
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100, 15, 8);
+            int expected_health = 100;
+            //act
+            int actual = rangedUnit.getHealth();
             //assert
-            assertEquals(100, rangedUnit.getHealth());
+            assertEquals(expected_health, actual);
         }
 
         @Test
         public void attack_is_a_expected_value() {
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100, 15, 8);
+            int expected_attack = 15;
+            //act
+            int actual = rangedUnit.getAttack();
             //assert
-            assertEquals(15, rangedUnit.getAttack());
+            assertEquals(expected_attack, actual);
         }
 
         @Test
         public void armor_is_a_expected_value() {
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100, 15, 8);
+            int expected_armor = 8;
+            //act
+            int actual = rangedUnit.getArmor();
             //assert
-            assertEquals(8, rangedUnit.getArmor());
+            assertEquals(expected_armor, actual);
         }
     }
 
@@ -53,16 +62,22 @@ public class RangedUnitTest {
         public void name_is_a_expected_value(){
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100);
+            String expected_name = "Archer";
+            //act
+            String actual = rangedUnit.getName();
             //assert
-            assertEquals("Archer", rangedUnit.getName());
+            assertEquals(expected_name, actual);
         }
 
         @Test
         public void health_is_a_expected_value() {
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100);
+            int expected_health = 100;
+            //act
+            int actual = rangedUnit.getHealth();
             //assert
-            assertEquals(100, rangedUnit.getHealth());
+            assertEquals(expected_health, actual);
         }
     }
 
@@ -136,8 +151,8 @@ public class RangedUnitTest {
         public void attackBonus_is_3(){
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100);
-            //act
             int expectedAttackBonus = 3;
+            //act
             int attackBonus = rangedUnit.getAttackBonus(TerrainType.PLAINS);
             //assert
             assertEquals(expectedAttackBonus,attackBonus);
@@ -147,8 +162,8 @@ public class RangedUnitTest {
         public void attackBonus_is_5_if_terrainType_is_Hill(){
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100);
-            //act
             int expectedAttackBonus = 5;
+            //act
             int attackBonus = rangedUnit.getAttackBonus(TerrainType.HILL);
             //assert
             assertEquals(expectedAttackBonus,attackBonus);
@@ -158,8 +173,8 @@ public class RangedUnitTest {
         public void attackBonus_is_2_if_terrainType_is_Forest(){
             //arrange
             RangedUnit rangedUnit = new RangedUnit("Archer", 100);
-            //act
             int expectedAttackBonus = 2;
+            //act
             int attackBonus = rangedUnit.getAttackBonus(TerrainType.FOREST);
             //assert
             assertEquals(expectedAttackBonus,attackBonus);
@@ -175,9 +190,9 @@ public class RangedUnitTest {
             int expectedResistanceBonus = 6;
             TerrainType terrainType = TerrainType.PLAINS;
             //act
-
+            int actual = rangedUnit.getResistBonus(terrainType);
             //assert
-            assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus(terrainType));
+            assertEquals(expectedResistanceBonus, actual);
         }
 
         @Test
@@ -204,10 +219,5 @@ public class RangedUnitTest {
             //assert
             assertEquals(expectedResistanceBonus, rangedUnit.getResistBonus(terrainType));
         }
-
-
     }
-/**
- * TODO add testers for TerrainType in rangedUnit
- */
 }
