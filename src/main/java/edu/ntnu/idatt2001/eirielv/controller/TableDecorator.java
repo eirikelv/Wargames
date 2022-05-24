@@ -21,21 +21,27 @@ import java.util.List;
 public class TableDecorator {
 
     /**
-     * This method initialize a table with 5 collums representing a army, and colums represents units
-     * @param tableView
+     * initTable5Colum initializes a table with 5 columns representing an army, and columns represents units
+     * @param tableView is the tableView to set with 5 columns
      */
     public static void initTable5Colum(TableView<Unit> tableView){
         tableView.getItems().clear();
+        tableView.getColumns().clear();
         TableColumn<Unit, String> name = new TableColumn<>("Name");
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        name.setMinWidth(100);
         TableColumn<Unit, Integer> health = new TableColumn<>("Health");
         health.setCellValueFactory(new PropertyValueFactory<>("health"));
+        health.setMinWidth(70);
         TableColumn<Unit, Integer> attack = new TableColumn<>("Attack");
         attack.setCellValueFactory(new PropertyValueFactory<>("attack"));
+        attack.setMinWidth(50);
         TableColumn<Unit, Integer> armor = new TableColumn<>("Armor");
         armor.setCellValueFactory(new PropertyValueFactory<>("armor"));
+        armor.setMinWidth(50);
         TableColumn<Unit, String> type = new TableColumn<>("UnitType");
         type.setCellValueFactory(new PropertyValueFactory<>("unitType"));
+        type.setMinWidth(100);
         tableView.getColumns().add(type);
         tableView.getColumns().add(name);
         tableView.getColumns().add(health);
@@ -44,17 +50,21 @@ public class TableDecorator {
     }
 
     /**
-     * This method initialize a table with 3 collums representing a army, an colums represents units
-     * @param tableView
+     * initTable3Colum initializes a table with 3 columns representing an army, and columns represents units
+     * @param tableView is the tableView to set with 3 columns
      */
     public static void initTable3Colum(TableView<Unit> tableView){
         tableView.getItems().clear();
+        tableView.getColumns().clear();
         TableColumn<Unit, String> name = new TableColumn<>("Name");
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        name.setMinWidth(100);
         TableColumn<Unit, Integer> health = new TableColumn<>("Health");
         health.setCellValueFactory(new PropertyValueFactory<>("health"));
+        health.setMinWidth(100);
         TableColumn<Unit, String> type = new TableColumn<>("UnitType");
         type.setCellValueFactory(new PropertyValueFactory<>("unitType"));
+        type.setMinWidth(100);
         tableView.getColumns().add(type);
         tableView.getColumns().add(name);
         tableView.getColumns().add(health);
@@ -62,12 +72,11 @@ public class TableDecorator {
 
     /**
      * fillTable fills all army presentation to a table view
-     * @param colum number of colums in the table represented ass integer
+     * @param colum number of columns in the table represented ass integer
      * @param army the army to put in the table, represented as Army
      * @param tableView the tableView to fill information in
      */
     public static void fillTable(int colum, Army army, TableView<Unit> tableView){
-        tableView.refresh();
         if(colum == 3) {
             initTable3Colum(tableView);
             ObservableList<Unit> observablearmyList = FXCollections.observableList(new ArrayList<>());
@@ -76,15 +85,17 @@ public class TableDecorator {
         }
         else{
             initTable5Colum(tableView);
-            army.getAllUnits().forEach(unit -> tableView.getItems().add(unit));
+            ObservableList<Unit> observablearmyList = FXCollections.observableList(new ArrayList<>());
+            observablearmyList.addAll(army.getAllUnits());
+            tableView.setItems(observablearmyList);
         }
     }
 
     /**
      * fillListView fills all general army information to a listview
-     * @param army the army to put in the table, represented as Army
-     * @param armiesListView the listView to fill information in
-     * @throws IOException
+     * @param army the army to represent in the table, represented as Army
+     * @param armiesListView the listView to fill information in, represented as ListView
+     * @throws IOException if there is something wrong with the file represented
      */
     public static void fillListView(Army army, ListView<String> armiesListView) throws IOException {
         armiesListView.getItems().clear();
