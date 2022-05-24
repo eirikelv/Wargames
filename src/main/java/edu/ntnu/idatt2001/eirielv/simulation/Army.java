@@ -5,7 +5,6 @@ import edu.ntnu.idatt2001.eirielv.units.CommanderUnit;
 import edu.ntnu.idatt2001.eirielv.units.InfantryUnit;
 import edu.ntnu.idatt2001.eirielv.units.RangedUnit;
 import javafx.collections.FXCollections;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +21,7 @@ public class Army {
 
     /**
      * This is a constructor for the army class where the units ar not implemented and need to be made from scratch
-     * @param name
+     * @param name of the army
      */
     public Army(String name) throws IllegalArgumentException{
         this.name = name;
@@ -32,10 +31,10 @@ public class Army {
     }
 
     /**
-     *This constructor is based on name and a list of units, where these units does not need to be crated after creating
+     *This constructor is based on name and a list of units, where these units do not need to be crated after creating
      * army object
-     * @param name
-     * @param units
+     * @param name of the army
+     * @param units list of units to add to the army
      */
     public Army(String name, List<Unit> units) throws IllegalArgumentException{
         this.name = name;
@@ -44,11 +43,9 @@ public class Army {
         this.units = FXCollections.observableList(units);
     }
 
-
-
     /**
-     *The method addUnit, adds a unit to the units list.
-     * @param unit is a unit based on the Unit class
+     *The add method addUnit, adds a unit to the units list.
+     * @param unit unit based on the Unit class
      */
     public void add(Unit unit){
         if(unit != null){
@@ -57,7 +54,7 @@ public class Army {
     }
 
     /**
-     *the method addAll adds all units inn to the units list
+     * The method addAll adds all units inn to the units list
      * @param units is the list holding units
      */
     public void addAll(List<Unit> units){
@@ -71,7 +68,7 @@ public class Army {
     }
 
     /**
-     *The method remove, removes a unit from the units list
+     * The method remove, removes a unit from the units list
      * @param unit is a unit based on the Unit class
      */
     public void remove(Unit unit){
@@ -81,24 +78,24 @@ public class Army {
     }
 
     /**
-     *The method hasUnits checkes if the list units is not null
-     * @return Returns true if units has units inside the list, and returns false if not
+     * The hasUnits method checks if the list units is not null
+     * @return true if units has units inside the list, and returns false if not
      */
     public boolean hasUnits(){
         return units.size() != 0;
     }
 
     /**
-     *The method getName returns the name of the army, represented as a String
-     * @return the name of the army as String
+     *The getName method returns the name of the army
+     * @return the name of the army, represented as String
      */
     public String getName() {
         return name;
     }
 
     /**
-     * The method getInfantryUnits returns all Infantries as a list
-     * @return infantryunits as a list
+     * The getInfantryUnits method returns all Infantries as a list
+     * @return all infantryUnits represented as list
      */
     public List<Unit> getInfantryUnits(){
         return units.stream().filter(unit -> unit instanceof InfantryUnit)
@@ -106,8 +103,8 @@ public class Army {
     }
 
     /**
-     * The method getCavalryUnits returns all Cavalries as a list
-     * @return cavalryunits as a list
+     * The getCavalryUnits method returns all Cavalries as a list
+     * @return all cavalryUnits, represented as list
      */
     public List<Unit> getCavalryUnits(){
         return units.stream().filter(unit -> unit instanceof CavalryUnit)
@@ -115,8 +112,8 @@ public class Army {
     }
 
     /**
-     * The method getRangedUnits returns all ranged units as a list
-     * @return ranged units as a list
+     * The getRangedUnits method returns all ranged units as a list
+     * @return all rangedUnits, represented as list
      */
     public List<Unit> getRangedUnits(){
         return units.stream().filter(unit -> unit instanceof RangedUnit)
@@ -124,8 +121,8 @@ public class Army {
     }
 
     /**
-     * The method getCommanderUnits returns all commanders as a list
-     * @return commander units as a list
+     * The getCommanderUnits method returns all commanders as a list
+     * @return all commander units, represented as list
      */
     public List<Unit> getCommanderUnits(){
         return units.stream().filter(unit -> unit instanceof CommanderUnit)
@@ -133,8 +130,8 @@ public class Army {
     }
 
     /**
-     *getAllUnits returns the list units, which contains all units added
-     * @return Returns the list units
+     * getAllUnits returns the list of all units added in Army
+     * @return all units, represented as list
      */
     public List<Unit> getAllUnits(){
         return units;
@@ -143,7 +140,7 @@ public class Army {
     /**
      * The method getRandom gives a random number from 0 to the size of the units list, the random number is represented
      * by x. This number will be the index of the unit that will be returned
-     * @return Returns the unit of index x
+     * @return the unit of index x, represented as Unit
      */
     public Unit getRandom(){
         Random random = new Random();
@@ -154,7 +151,7 @@ public class Army {
     /**
      * This method checkes if two objects are equal, it also cheks if the name is the same.
      * @param o is the object the user try to find out if equal
-     * @return a boolean dependend on if the two objects are equal
+     * @return a boolean dependent on if the two objects are equal
      */
     @Override
     public boolean equals(Object o) {
@@ -165,8 +162,8 @@ public class Army {
     }
 
     /**
-     *  this is a hashcode method that creats a hashcode to an unit object based on name and units
-     * @return an hashcode as an integer
+     * The hashcode method creates a hashcode to a unit object based on name and units
+     * @return a hashcode, represented as an integer
      */
     @Override
     public int hashCode() {
