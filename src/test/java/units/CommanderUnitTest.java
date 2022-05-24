@@ -17,33 +17,42 @@ public class CommanderUnitTest {
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100, 25, 15);
             String expected_name = "Commander";
             //act
-
+            String actual = commanderUnit.getName();
             //assert
-            assertEquals(expected_name, commanderUnit.getName());
+            assertEquals(expected_name, actual);
         }
 
         @Test
         public void health_is_a_expected_value() {
             //arrange
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100, 25, 15);
+            int expected_health = 100;
+            //act
+            int actual = commanderUnit.getHealth();
             //assert
-            assertEquals(100, commanderUnit.getHealth());
+            assertEquals(expected_health, actual);
         }
 
         @Test
         public void attack_is_a_expected_value() {
             //arrange
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100, 25, 15);
+            int expected_attack = 25;
+            //act
+            int actual = commanderUnit.getHealth();
             //assert
-            assertEquals(25, commanderUnit.getAttack());
+            assertEquals(expected_attack, actual);
         }
 
         @Test
         public void armor_is_a_expected_value() {
             //arrange
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100, 25, 15);
+            int expected_armor = 15;
+            //act
+            int actual = commanderUnit.getArmor();
             //assert
-            assertEquals(15, commanderUnit.getArmor());
+            assertEquals(expected_armor, actual);
         }
     }
 
@@ -53,16 +62,22 @@ public class CommanderUnitTest {
         public void name_is_a_expected_value(){
             //arrange
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100);
+            String expected_name = "Commander";
+            //act
+            String actual = commanderUnit.getName();
             //assert
-            assertEquals("Commander", commanderUnit.getName());
+            assertEquals(expected_name, actual);
         }
 
         @Test
         public void health_is_a_expected_value() {
             //arrange
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100);
+            int expected_health = 100;
+            //act
+            int actual = commanderUnit.getHealth();
             //assert
-            assertEquals(100, commanderUnit.getHealth());
+            assertEquals(expected_health, actual);
         }
     }
 
@@ -137,8 +152,8 @@ public class CommanderUnitTest {
             //arrange
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100);
             TerrainType terrainType = TerrainType.HILL;
-            //act
             int expectedAttackBonus = 6;
+            //act
             int attackBonus = commanderUnit.getAttackBonus(terrainType);
             //assert
             assertEquals(expectedAttackBonus, attackBonus);
@@ -150,8 +165,8 @@ public class CommanderUnitTest {
             //arrange
             CommanderUnit commanderUnit = new CommanderUnit("Commander", 100);
             TerrainType terrainType = TerrainType.HILL;
-            //act
             int expectedAttackBonus = 2;
+            //act
             commanderUnit.getAttackBonus(terrainType);
             int attackBonus = commanderUnit.getAttackBonus(terrainType);
             //assert
@@ -164,8 +179,8 @@ public class CommanderUnitTest {
         //arrange
         CommanderUnit commanderUnit = new CommanderUnit("Commander", 100);
         TerrainType terrainType = TerrainType.HILL;
-        //act
         int expectedResistanceBonus = 1;
+        //act
         int resistanceBonus = commanderUnit.getResistBonus(terrainType);
         //assert
         assertEquals(expectedResistanceBonus, resistanceBonus);
