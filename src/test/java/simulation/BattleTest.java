@@ -1,10 +1,13 @@
 package simulation;
 
-import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
-import edu.ntnu.idatt2001.eirielv.units.*;
-import edu.ntnu.idatt2001.eirielv.simulation.Army;
-import edu.ntnu.idatt2001.eirielv.simulation.Battle;
-import edu.ntnu.idatt2001.eirielv.simulation.Unit;
+import edu.ntnu.idatt2001.eirielv.model.simulation.TerrainType;
+import edu.ntnu.idatt2001.eirielv.model.units.CavalryUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.CommanderUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.InfantryUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.RangedUnit;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Army;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Battle;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Unit;
 import org.junit.jupiter.api.Test;
 
 
@@ -73,4 +76,7 @@ public class BattleTest {
         assertEquals("armyOne VS armyTwo",battle.toString());
     }
 
+    /**
+     * TODO add tester for battle in TerrainTypes
+     */
 }

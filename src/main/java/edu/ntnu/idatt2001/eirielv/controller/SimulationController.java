@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.eirielv.controller;
 
-import edu.ntnu.idatt2001.eirielv.simulation.*;
+import edu.ntnu.idatt2001.eirielv.model.simulation.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -37,12 +37,12 @@ public class SimulationController{
     private ListView<String> armiesList2;
 
     /**
-     * initialize initializes the contstructor and imports army1 and army2 stored in {@link Singleton}.
+     * initialize initializes the contstructor and imports army1 and army2 stored in {@link SimulatorSingleton}.
      * After importing the armies gets represented in TableView and ListView
      */
     public void initialize() {
-        Army army1 = Singleton.getInstance().getArmy1();
-        Army army2 = Singleton.getInstance().getArmy2();
+        Army army1 = SimulatorSingleton.getInstance().getArmy1();
+        Army army2 = SimulatorSingleton.getInstance().getArmy2();
         TableDecorator.fillTable(3, army1, army1Representation);
         TableDecorator.fillTable(3, army2, army2Representation);
         try {
@@ -93,7 +93,7 @@ public class SimulationController{
     }
 
     /**
-     * simulate simulates a battle between the two armies imported from {@link Singleton}, and makes a object
+     * simulate simulates a battle between the two armies imported from {@link SimulatorSingleton}, and makes a object
      * of {@link Battle} with army1 and army2 as variables. Then in a Timeline, it runs battle.simulate where one
      * random unit from army1 attacks one random unit from army2, and represents the winner in an
      * {@link AlertBox} winnerBox, which is a informationBox
@@ -103,8 +103,8 @@ public class SimulationController{
         Army army1;
         Army army2;
         try {
-            army1 = armyFileHandler.getArmyFromCSVInput(Singleton.getInstance().getArmyName1());
-            army2 = armyFileHandler.getArmyFromCSVInput(Singleton.getInstance().getArmyName2());
+            army1 = armyFileHandler.getArmyFromCSVInput(SimulatorSingleton.getInstance().getArmyName1());
+            army2 = armyFileHandler.getArmyFromCSVInput(SimulatorSingleton.getInstance().getArmyName2());
         } catch (IOException e){
             AlertBox.alertError(e.getMessage());
             return;
@@ -174,8 +174,8 @@ public class SimulationController{
         Army army1;
         Army army2;
         try {
-            army1 = armyFileHandler.getArmyFromCSVInput(Singleton.getInstance().getArmyName1());
-            army2 = armyFileHandler.getArmyFromCSVInput(Singleton.getInstance().getArmyName2());
+            army1 = armyFileHandler.getArmyFromCSVInput(SimulatorSingleton.getInstance().getArmyName1());
+            army2 = armyFileHandler.getArmyFromCSVInput(SimulatorSingleton.getInstance().getArmyName2());
         } catch (IOException e){
             AlertBox.alertError(e.getMessage());
             return;

@@ -1,10 +1,8 @@
 package edu.ntnu.idatt2001.eirielv.controller;
 
-import edu.ntnu.idatt2001.eirielv.simulation.Army;
-import edu.ntnu.idatt2001.eirielv.simulation.ArmyFileHandling;
-import edu.ntnu.idatt2001.eirielv.simulation.Unit;
-import edu.ntnu.idatt2001.eirielv.units.UnitFactory;
-import edu.ntnu.idatt2001.eirielv.units.UnitType;
+import edu.ntnu.idatt2001.eirielv.model.simulation.*;
+import edu.ntnu.idatt2001.eirielv.model.units.UnitFactory;
+import edu.ntnu.idatt2001.eirielv.model.units.UnitType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
@@ -85,7 +83,7 @@ public class CreateNewArmy {
     }
 
     /**
-     * newArmyName method creates the new army and writes it to a csv file. It decides which {@link Singleton}
+     * newArmyName method creates the new army and writes it to a csv file. It decides which {@link SimulatorSingleton}
      * army to change by looking for the button which was pressed in {@link ArmiesController}.
      */
     public void newArmyName() {
@@ -94,11 +92,11 @@ public class CreateNewArmy {
         tableViewArmy.refresh();
         ArmyFileHandling armyFileHandler = new ArmyFileHandling();
         armyFileHandler.writeUnitsToCSVFile(newArmy);
-        if(Objects.equals(Singleton.getInstance().getButton().getId(), "newArmy1")){
-            Singleton.getInstance().setArmy1(newArmy);
+        if(Objects.equals(SimulatorSingleton.getInstance().getButton().getId(), "newArmy1")){
+            SimulatorSingleton.getInstance().setArmy1(newArmy);
         }
         else{
-            Singleton.getInstance().setArmy2(newArmy);
+            SimulatorSingleton.getInstance().setArmy2(newArmy);
         }
         textArmyName.setText(setArmyToEdit().getName());
         textFieldUnitName.disableProperty();
@@ -123,16 +121,16 @@ public class CreateNewArmy {
     }
 
     /**
-     * setArmyToEdit method gets the buttonID to button stored in {@link Singleton}, which was
-     * the last button pressed before changing scene, and decides what army in{@link Singleton}
+     * setArmyToEdit method gets the buttonID to button stored in {@link SimulatorSingleton}, which was
+     * the last button pressed before changing scene, and decides what army in{@link SimulatorSingleton}
      * to store the new army.
-     * @return {@link Singleton} army1 or army2 represented as Army
+     * @return {@link SimulatorSingleton} army1 or army2 represented as Army
      */
     public Army setArmyToEdit(){
-        if(Objects.equals(Singleton.getInstance().getButton().getId(), "newArmy1")){
-            return Singleton.getInstance().getArmy1();
+        if(Objects.equals(SimulatorSingleton.getInstance().getButton().getId(), "newArmy1")){
+            return SimulatorSingleton.getInstance().getArmy1();
         }else{
-            return Singleton.getInstance().getArmy2();
+            return SimulatorSingleton.getInstance().getArmy2();
         }
     }
 }

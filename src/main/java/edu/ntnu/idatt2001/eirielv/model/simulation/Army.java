@@ -1,9 +1,9 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package edu.ntnu.idatt2001.eirielv.model.simulation;
 
-import edu.ntnu.idatt2001.eirielv.units.CavalryUnit;
-import edu.ntnu.idatt2001.eirielv.units.CommanderUnit;
-import edu.ntnu.idatt2001.eirielv.units.InfantryUnit;
-import edu.ntnu.idatt2001.eirielv.units.RangedUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.CavalryUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.CommanderUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.InfantryUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.RangedUnit;
 import javafx.collections.FXCollections;
 import java.util.ArrayList;
 import java.util.List;

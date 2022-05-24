@@ -1,10 +1,13 @@
 package units;
 
+import edu.ntnu.idatt2001.eirielv.model.simulation.Army;
+import edu.ntnu.idatt2001.eirielv.model.simulation.ArmyFileHandling;
+import edu.ntnu.idatt2001.eirielv.model.units.InfantryUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.UnitFactory;
+import edu.ntnu.idatt2001.eirielv.model.units.UnitType;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import edu.ntnu.idatt2001.eirielv.units.*;
-import edu.ntnu.idatt2001.eirielv.simulation.*;
 
 public class UnitFactoryTest {
 

@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.eirielv.controller;
 
+import edu.ntnu.idatt2001.eirielv.model.simulation.AlertBox;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class FrontPageController {
     }
 
     /**
-     * goToSimulation takes the user to simulation if there is stored armies in {@link Singleton}, else it shows alerBox
+     * goToSimulation takes the user to simulation if there is stored armies in {@link SimulatorSingleton}, else it shows alerBox
      * @param event calls the method when mouse clicked
      * @throws IOException if there is damaged information in the new scene
      */

@@ -1,7 +1,7 @@
 package simulation;
 
-import edu.ntnu.idatt2001.eirielv.units.*;
-import edu.ntnu.idatt2001.eirielv.simulation.*;
+import edu.ntnu.idatt2001.eirielv.model.simulation.TerrainType;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Unit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

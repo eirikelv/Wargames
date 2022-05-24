@@ -1,9 +1,10 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package edu.ntnu.idatt2001.eirielv.model.simulation;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
-import edu.ntnu.idatt2001.eirielv.units.*;
+import edu.ntnu.idatt2001.eirielv.model.units.UnitFactory;
+import edu.ntnu.idatt2001.eirielv.model.units.UnitType;
 
 import java.util.regex.*;
 import java.io.*;

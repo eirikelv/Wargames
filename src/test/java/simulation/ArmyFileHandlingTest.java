@@ -1,11 +1,17 @@
 package simulation;
 
-import edu.ntnu.idatt2001.eirielv.units.*;
-import edu.ntnu.idatt2001.eirielv.simulation.*;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Army;
+import edu.ntnu.idatt2001.eirielv.model.simulation.ArmyFileHandling;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Unit;
+import edu.ntnu.idatt2001.eirielv.model.units.CavalryUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.CommanderUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.InfantryUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.RangedUnit;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +23,7 @@ public class ArmyFileHandlingTest {
     class getArmyFromCSVInput_works_as_expected_when_it{
 
         @Test
-        public void reads_correct_information_from_a_csv_file_and_makes_a_army(){
+        public void reads_correct_information_from_a_csv_file_and_makes_a_army() throws IOException {
             Army armyOne = new Army("testersHumanArmy");
             ArmyFileHandling armyFileHandling = new ArmyFileHandling();
             List<Unit> expectedInformation = new ArrayList<>();
@@ -110,7 +116,7 @@ public class ArmyFileHandlingTest {
         }
 
         @Test
-        public void stores_correct_information_to_a_CSV_file(){
+        public void stores_correct_information_to_a_CSV_file() throws IOException {
             Army armyOne = new Army("armyOne");
             ArmyFileHandling armyFileHandling = new ArmyFileHandling();
 

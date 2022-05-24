@@ -1,7 +1,11 @@
 package simulation;
 
-import edu.ntnu.idatt2001.eirielv.units.*;
-import edu.ntnu.idatt2001.eirielv.simulation.*;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Army;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Unit;
+import edu.ntnu.idatt2001.eirielv.model.units.CavalryUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.CommanderUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.InfantryUnit;
+import edu.ntnu.idatt2001.eirielv.model.units.RangedUnit;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;

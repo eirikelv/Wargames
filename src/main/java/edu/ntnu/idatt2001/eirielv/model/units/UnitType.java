@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001.eirielv.units;
+package edu.ntnu.idatt2001.eirielv.model.units;
 
 /**
  * @author Eirik Elvestad

@@ -1,10 +1,8 @@
 package edu.ntnu.idatt2001.eirielv.controller;
 
-import edu.ntnu.idatt2001.eirielv.simulation.Army;
-import edu.ntnu.idatt2001.eirielv.simulation.ArmyFileHandling;
-import edu.ntnu.idatt2001.eirielv.simulation.Unit;
-import edu.ntnu.idatt2001.eirielv.units.UnitFactory;
-import edu.ntnu.idatt2001.eirielv.units.UnitType;
+import edu.ntnu.idatt2001.eirielv.model.simulation.*;
+import edu.ntnu.idatt2001.eirielv.model.units.UnitFactory;
+import edu.ntnu.idatt2001.eirielv.model.units.UnitType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -34,7 +32,7 @@ public class AddUnitsController {
 
     /**
      * Initializes the controller and sets value to checkbox and tableView and uses setArmyToEdit() to decide
-     * which army from {@link Singleton} to store in TableView
+     * which army from {@link SimulatorSingleton} to store in TableView
      */
     @FXML
     public void initialize() {
@@ -97,16 +95,16 @@ public class AddUnitsController {
 
 
     /**
-     * setArmyToEdit method gets the buttonID to button stored in {@link Singleton}, which was
-     * the last button pressed before changing scene, and decides what army in {@link Singleton}
+     * setArmyToEdit method gets the buttonID to button stored in {@link SimulatorSingleton}, which was
+     * the last button pressed before changing scene, and decides what army in {@link SimulatorSingleton}
      * to store the new army.
-     * @return {@link Singleton} army1 or army2 represented as Army
+     * @return {@link SimulatorSingleton} army1 or army2 represented as Army
      */
     public Army setArmyToEdit(){
-        if(Objects.equals(Singleton.getInstance().getButton().getId(), "addUnits1")){
-            return Singleton.getInstance().getArmy1();
+        if(Objects.equals(SimulatorSingleton.getInstance().getButton().getId(), "addUnits1")){
+            return SimulatorSingleton.getInstance().getArmy1();
         }else{
-            return Singleton.getInstance().getArmy2();
+            return SimulatorSingleton.getInstance().getArmy2();
         }
     }
 }

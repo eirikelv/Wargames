@@ -1,10 +1,10 @@
 package units;
 
-import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
+import edu.ntnu.idatt2001.eirielv.model.simulation.TerrainType;
+import edu.ntnu.idatt2001.eirielv.model.units.InfantryUnit;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import edu.ntnu.idatt2001.eirielv.units.*;
 
 
 public class InfantryUnitTest {
@@ -183,4 +183,7 @@ public class InfantryUnitTest {
             assertEquals(expectedResistBonus, resistBonus);
         }
     }
+    /**
+     * TODO add testers for TerrainType in infantryUnit
+     */
 }

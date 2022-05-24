@@ -2,9 +2,7 @@ package edu.ntnu.idatt2001.eirielv.controller;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-import edu.ntnu.idatt2001.eirielv.simulation.Army;
-import edu.ntnu.idatt2001.eirielv.simulation.ArmyFileHandling;
-import edu.ntnu.idatt2001.eirielv.simulation.Unit;
+import edu.ntnu.idatt2001.eirielv.model.simulation.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -55,15 +53,15 @@ public class ArmiesController{
     private ListView<String> armiesList2;
 
     /** Initialize the controller, and sets the tableview and listView for the scene. If there already exists armies
-     * in {@link Singleton}, it imports these armies and set their information in tableView and ListView
+     * in {@link SimulatorSingleton}, it imports these armies and set their information in tableView and ListView
      */
     @FXML
     public void initialize() {
         TableDecorator.initTable5Colum(armiesTable1);
         TableDecorator.initTable5Colum(armiesTable2);
-       if(Singleton.getInstance().getArmy1() != null && Singleton.getInstance().getArmy2() != null){
-           Army army1 = Singleton.getInstance().getArmy1();
-           Army army2 = Singleton.getInstance().getArmy2();
+       if(SimulatorSingleton.getInstance().getArmy1() != null && SimulatorSingleton.getInstance().getArmy2() != null){
+           Army army1 = SimulatorSingleton.getInstance().getArmy1();
+           Army army2 = SimulatorSingleton.getInstance().getArmy2();
            TextFieldArmyName1.setText(army1.getName());
            TextFieldArmyName2.setText(army2.getName());
            textArmyName1.setText(army1.getName());
@@ -102,12 +100,12 @@ public class ArmiesController{
      */
     @FXML
     public void addUnits(MouseEvent mouseEvent) throws IOException {
-        if(Objects.equals(Singleton.getInstance().getButton().getId(), "addUnits1")
-                && Singleton.getInstance().getArmy1() == null){
+        if(Objects.equals(SimulatorSingleton.getInstance().getButton().getId(), "addUnits1")
+                && SimulatorSingleton.getInstance().getArmy1() == null){
             AlertBox.alertError("set \"Change army\" on left side to add a unit to this army");
         }
-        else if(Objects.equals(Singleton.getInstance().getButton().getId(), "addUnits2")
-                && Singleton.getInstance().getArmy2() == null){
+        else if(Objects.equals(SimulatorSingleton.getInstance().getButton().getId(), "addUnits2")
+                && SimulatorSingleton.getInstance().getArmy2() == null){
             AlertBox.alertError("set \"Change army\" on right side to add a unit to this army");
         }
         else{SwitchScene.createNewStage("AddUnitsWindow");}
@@ -124,7 +122,7 @@ public class ArmiesController{
     }
 
     /**
-     * goToSimulationPage saves army1 and army2 to {@link Singleton}, and sends the user to {@link SwitchScene} SimulationPage.fxml.
+     * goToSimulationPage saves army1 and army2 to {@link SimulatorSingleton}, and sends the user to {@link SwitchScene} SimulationPage.fxml.
      * If information is missing, it shows an alertbox.
      * @param event checks if the button "Save" is clicked by the mouse
      * @throws IOException if the new scene has invalid information
@@ -167,7 +165,7 @@ public class ArmiesController{
                 AlertBox.alertError(e.getMessage());
                 return;
             }
-            Singleton.getInstance().setArmy1(csvArmy1);
+            SimulatorSingleton.getInstance().setArmy1(csvArmy1);
             TableDecorator.fillTable(5, csvArmy1, armiesTable1);
             TableDecorator.fillListView(csvArmy1, armiesList1);
             textArmyName1.setText(csvArmy1.getName());
@@ -196,7 +194,7 @@ public class ArmiesController{
                 AlertBox.alertError(e.getMessage());
                 return;
             }
-            Singleton.getInstance().setArmy2(csvArmy2);
+            SimulatorSingleton.getInstance().setArmy2(csvArmy2);
             TableDecorator.fillTable(5, csvArmy2, armiesTable2);
             TableDecorator.fillListView(csvArmy2, armiesList2);
             textArmyName2.setText(csvArmy2.getName());
@@ -209,7 +207,7 @@ public class ArmiesController{
 
     /**
      *saveArmies method gets information from Tableview, and makes an army of the tableview. Then it passes the information
-     * to Singleton, to further use it in simulation
+     * to SimulatorSingleton, to further use it in simulation
      */
     @FXML
     private void saveArmies(){
@@ -224,13 +222,13 @@ public class ArmiesController{
             AlertBox.alertError(e.getMessage() + "\n If there already exists armies, disregard this error");
             return;
         }
-        Singleton.getInstance().setArmy1(army1);
-        Singleton.getInstance().setArmy2(army2);
+        SimulatorSingleton.getInstance().setArmy1(army1);
+        SimulatorSingleton.getInstance().setArmy2(army2);
     }
 
     /**
      * importFile method imports chosen file to directory armyCSVfiles in resources, then imports army from the new csv and sets
-     * a new army in {@link Singleton}.
+     * a new army in {@link SimulatorSingleton}.
      * @throws IOException if there is something wrong with the files
      * @throws CsvValidationException if the csv file is damaged
      */
@@ -246,14 +244,14 @@ public class ArmiesController{
             AlertBox.alertError("Ingen fil ble valgt");
         }
         Army army = armyFileHandler.getArmyFromCSVInput(renameCSV());
-        if(Objects.equals(Singleton.getInstance().getButton().getId(), "importArmy1")) {
-            Singleton.getInstance().setArmy1(army);
+        if(Objects.equals(SimulatorSingleton.getInstance().getButton().getId(), "importArmy1")) {
+            SimulatorSingleton.getInstance().setArmy1(army);
             TableDecorator.fillTable(5, army, armiesTable1);
             TableDecorator.fillListView(army, armiesList1);
             textArmyName1.setText(army.getName());
         }
-        else if(Objects.equals(Singleton.getInstance().getButton().getId(), "importArmy2")) {
-            Singleton.getInstance().setArmy2(army);
+        else if(Objects.equals(SimulatorSingleton.getInstance().getButton().getId(), "importArmy2")) {
+            SimulatorSingleton.getInstance().setArmy2(army);
             TableDecorator.fillTable(5, army, armiesTable2);
             TableDecorator.fillListView(army, armiesList2);
             textArmyName1.setText(army.getName());
@@ -280,11 +278,11 @@ public class ArmiesController{
 
     /**
      * setButton recieves an actionEvent, and gets the button source of the event, then stores the information about
-     * the last button pressed in ArmiesPage.fxml, and stores it in {@link Singleton}
+     * the last button pressed in ArmiesPage.fxml, and stores it in {@link SimulatorSingleton}
      * @param actionEvent is an event triggered when there is a event on a button
      */
     public void setButton(javafx.event.ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
-        Singleton.getInstance().setButton(button);
+        SimulatorSingleton.getInstance().setButton(button);
     }
 }

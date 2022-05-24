@@ -1,6 +1,5 @@
-package edu.ntnu.idatt2001.eirielv.controller;
+package edu.ntnu.idatt2001.eirielv.model.simulation;
 
-import edu.ntnu.idatt2001.eirielv.simulation.Army;
 import javafx.scene.control.Alert;
 
 /**

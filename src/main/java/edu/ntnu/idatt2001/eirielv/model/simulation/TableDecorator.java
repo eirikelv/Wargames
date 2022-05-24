@@ -1,8 +1,5 @@
-package edu.ntnu.idatt2001.eirielv.controller;
+package edu.ntnu.idatt2001.eirielv.model.simulation;
 
-import edu.ntnu.idatt2001.eirielv.simulation.Army;
-import edu.ntnu.idatt2001.eirielv.simulation.ArmyFileHandling;
-import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
