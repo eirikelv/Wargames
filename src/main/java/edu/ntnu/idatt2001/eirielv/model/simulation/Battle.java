@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package edu.ntnu.idatt2001.eirielv.model.simulation;
 
 /**
  * This class simulates a battle of 2 armies, armyOne and armyTwo
@@ -19,9 +19,10 @@ public class Battle {
     }
 
     /**
-     * the method simulate, simulates an attack between to armies. If one unit gets 0 health
+     * The simulate method, simulates an attack between to armies in a terrain. If one unit gets 0 health
      * it is dead, and gets removed from the army who ones the unit.
-     * @return the winning army
+     * @param terrainType is the chosen terrainType the armies battles in
+     * @return the winning army, represented ass Army
      */
     public Army simulate(TerrainType terrainType){
         while(armyOne.hasUnits() && armyTwo.hasUnits()){
@@ -36,10 +37,8 @@ public class Battle {
                 }
                 else break;
             }
-
             unit2.attack(unit1,terrainType);
             if(unit1.getHealth() <= 0) armyOne.remove(unit1);
-
         }
         if(armyOne.hasUnits()){
             return armyOne ;
@@ -50,8 +49,9 @@ public class Battle {
     }
 
     /**
-     * TODO write javaDoc and testers
-     * @param terrainType
+     * The singleSimulate method simulates on fight between one unit from army1 and one army from army2
+     * in a chosen TerrainType
+     * @param terrainType is the chosen terrainType the armies battles in
      */
     public void singleSimulate(TerrainType terrainType){
         Unit unit1 = armyOne.getRandom();
@@ -70,16 +70,16 @@ public class Battle {
     }
 
     /**
-     * Army getArmyOne returns one army
-     * @return one army
+     * Army getArmyOne returns armyOne
+     * @return armyOne represented as Army
      */
     public Army getArmyOne(){
         return armyOne;
     }
 
     /**
-     * Army getArmyTwo returns other army
-     * @return one army
+     * Army getArmyTwo returns armyTwo
+     * @return armyTwo represented as Army
      */
     public Army getArmyTwo(){
         return armyTwo;
