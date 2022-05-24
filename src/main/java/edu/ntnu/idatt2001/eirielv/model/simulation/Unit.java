@@ -1,18 +1,16 @@
-package edu.ntnu.idatt2001.eirielv.simulation;
+package edu.ntnu.idatt2001.eirielv.model.simulation;
 
-import edu.ntnu.idatt2001.eirielv.units.UnitType;
+import edu.ntnu.idatt2001.eirielv.model.units.UnitType;
 
 /**
  * This is a unit class that works as a blueprint for all future units and their methods and variables
  * @author Eirik Elvestad
  */
-
 public abstract class Unit {
     private String name;
     private int health;
     private int attack;
     private int armor;
-
     private UnitType unitType;
 
     /**
@@ -34,12 +32,11 @@ public abstract class Unit {
             if(this.armor < 0) throw new IllegalArgumentException("Armor value is lower than 0, not valid");
     }
 
-
-
     /**
      * This method simulates an attack on an opponent. When an opponent is attacked, then the health of the opponent is
      * subtracted with the attack points and AttackBonus, then the armor points and ResistBonus is added with the health.
      * @param opponent The Unit opponent is the opponent receiving the attack
+     * @param terrainType is the terrain the units are fighting in
      */
     public void attack(Unit opponent,TerrainType terrainType){
         int newOpponentHealth = (opponent.getHealth()) - (this.attack + this.getAttackBonus(terrainType)) +
@@ -80,38 +77,43 @@ public abstract class Unit {
     }
 
     /**
-     * The method getAttackBonus returns the attackbonus when a unit is attacking an opponent
+     * The method getAttackBonus returns the attackbonus when a unit is attacking an opponent. The
+     * attackbonus is also effected by the terrainType
+     * @param terrainType is the terrain the units are fighting in
      * @return attackbonus to the unit representet as int
      */
     public abstract int getAttackBonus(TerrainType terrainType);
 
     /**
-     * The method getResistBonus returns the resistbonus of the opponent getting attacked
+     * The method getResistBonus returns the resistbonus of the opponent getting attacked. The
+     * resistbonus is also effected by the terrainType
+     * @param terrainType is the terrain the units are fighting in
      * @return resistbonus of the opponent getting attacked representet as int
      */
     public abstract int getResistBonus(TerrainType terrainType);
 
     /**
-     * The method setHealth sets the healthvalue of the unit
-     * @param health is the healthvalue og the unit represented as int
+     * The method setHealth sets the health value of the unit
+     * @param health is the health value og the unit represented as int
      */
     public void setHealth(int health) {
         this.health = health;
     }
 
     /**
-     * TODO legg til javadoc
-     * @param unitType
+     * setUnitType sets the unit type of the unit
+     * @param unitType the unit type represented as UnitType
      */
     public void setUnitType(UnitType unitType){this.unitType = unitType;}
 
     /**
-     * TODO legg til javadoc
-     * @return
+     * getUnitType returns the unit type of the unit
+     * @return the unit type represented as UnitType
      */
     public UnitType getUnitType(){
         return unitType;
     }
+
     /**
      * a toString method that prints out the statistics of a unit
      * @return string of the units statistic by name health attack and armor
