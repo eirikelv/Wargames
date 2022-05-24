@@ -17,6 +17,7 @@ class ArmyTest {
     @Test
     void the_constructor_gets_expected_name_value() {
         //arrange
+        //act
         Army army = new Army("Army1");
         String expectedValue = "Army1";
         //assert
@@ -30,20 +31,24 @@ class ArmyTest {
         @Test
         void name_attribute_gets_empty_name_value() {
             assertThrows(IllegalArgumentException.class, () -> {
+                //act
                 Army army = new Army("");
             });
+            //assert
         }
 
         @Test
         void name_attribute_gets_blank_name_value() {
             assertThrows(IllegalArgumentException.class, () -> {
+                //act
                 Army army = new Army(" ");
             });
+            //assert
         }
     }
 
     @Test
-    void constructor_with_name_and_array_attribute_ads_right_value(){
+    void constructor_with_name_and_array_attribute_adds_right_value(){
         //Arrange:
         String name = "Army";
         List<Unit> units = new ArrayList<>();
@@ -94,15 +99,17 @@ class ArmyTest {
     }
 
     @Test
-    void addAll_method_adsAll_units() {
+    void addAll_method_addsAll_units() {
         //Arrange:
         String name = "Army";
         List<Unit> units = new ArrayList<>();
         units.add(new CavalryUnit("Knight", 100));
         units.add(new RangedUnit("Archer", 100));
-        //Act
         Army army = new Army(name);
+
+        //Act
         army.addAll(units);
+
         //Assert
         assertTrue(army.getAllUnits().containsAll(units));
     }
@@ -113,14 +120,17 @@ class ArmyTest {
         String name = "Army";
         Unit knight = new CavalryUnit("Knight", 100);
         Unit archer = new RangedUnit("Archer", 100);
-        //Act
         Army army = new Army(name);
         army.add(knight);
         army.add(archer);
+        int expectedValue = army.getAllUnits().size();
+
+        //Act
         army.remove(archer);
-        int expectedValue = 1;
+        int actualValue = army.getAllUnits().size();
+
         //Assert
-        assertEquals(army.getAllUnits().size(), expectedValue);
+        assertEquals(expectedValue, actualValue);
     }
 
     @Test
@@ -129,22 +139,28 @@ class ArmyTest {
         String name = "Army";
         Unit knight = new CavalryUnit("Knight", 100);
         Unit archer = new RangedUnit("Archer", 100);
-        //Act
         Army army = new Army(name);
         army.add(knight);
         army.add(archer);
+        boolean actual;
+
+        //Act
+        actual = army.hasUnits();
+
         //Assert
-        assertTrue(army.hasUnits());
+        assertTrue(actual);
     }
 
     @Test
     void hasUnits_returns_false_if_it_has_no_units() {
         //Arrange
         String name = "Army";
-        //Act
         Army army = new Army(name);
+        boolean actual;
+        //Act
+        actual = army.hasUnits();
         //Assert
-        assertFalse(army.hasUnits());
+        assertFalse(actual);
     }
 
     @Test
@@ -154,11 +170,13 @@ class ArmyTest {
         List<Unit> units = new ArrayList<>();
         units.add(new CavalryUnit("Knight", 100));
         units.add(new RangedUnit("Archer", 100));
-        //Act
         Army army = new Army(name);
         army.addAll(units);
+        boolean actual;
+        //Act
+        actual = units.contains(army.getRandom());
         //Assert
-        assertTrue(units.contains(army.getRandom()));
+        assertTrue(actual);
 
     }
 
@@ -167,6 +185,7 @@ class ArmyTest {
 
         @Test
         public void getInfantryUnit_returns_expected_information() {
+            //Arrange
             Army armyOne = new Army("armyOne");
             Army armyTwo = new Army("armyTwo");
 
@@ -185,14 +204,19 @@ class ArmyTest {
             expected.add(new InfantryUnit("Solider3", 30));
 
             List<Unit> actual = new ArrayList<>();
+
+            //Act
             actual.add(armyOne.getInfantryUnits().get(0));
             actual.add(armyOne.getInfantryUnits().get(1));
             actual.add(armyOne.getInfantryUnits().get(2));
+
+            //Assert
             assertTrue(expected.toString().equals(actual.toString()));
         }
 
         @Test
         public void getRangedUnit_returns_expected_information() {
+            //Arrange
             Army armyOne = new Army("armyOne");
             Army armyTwo = new Army("armyTwo");
 
@@ -211,14 +235,19 @@ class ArmyTest {
             expected.add(new RangedUnit("Archer3", 20));
 
             List<Unit> actual = new ArrayList<>();
+
+            //Act
             actual.add(armyOne.getRangedUnits().get(0));
             actual.add(armyOne.getRangedUnits().get(1));
             actual.add(armyOne.getRangedUnits().get(2));
+
+            //Assert
             assertEquals(expected.toString(), actual.toString());
         }
 
         @Test
         public void getCavalryUnits_returns_expected_information() {
+            //Arrange
             Army armyOne = new Army("armyOne");
             Army armyTwo = new Army("armyTwo");
 
@@ -237,17 +266,23 @@ class ArmyTest {
             expected.add(new CavalryUnit("Knight3", 15));
 
             List<Unit> actual = new ArrayList<>();
+
+            //Act
             actual.add(armyOne.getCavalryUnits().get(0));
             actual.add(armyOne.getCavalryUnits().get(1));
             actual.add(armyOne.getCavalryUnits().get(2));
+
+            //Assert
             assertEquals(expected.toString(), actual.toString());
         }
 
         @Test
         public void getCommanderUnits_returns_expected_information() {
+            //Arrange
             Army armyOne = new Army("armyOne");
             Army armyTwo = new Army("armyTwo");
 
+            //Act
             List<Unit> units = new ArrayList<>();
             units.add(new CavalryUnit("Knight", 15));
             units.add(new RangedUnit("Archer", 20));
@@ -263,9 +298,13 @@ class ArmyTest {
             expected.add(new CommanderUnit("Rex3", 40));
 
             List<Unit> actual = new ArrayList<>();
+
+            //Act
             actual.add(armyOne.getCommanderUnits().get(0));
             actual.add(armyOne.getCommanderUnits().get(1));
             actual.add(armyOne.getCommanderUnits().get(2));
+
+            //Assert
             assertEquals(expected.toString(), actual.toString());
         }
     }
@@ -275,8 +314,10 @@ class ArmyTest {
         //Arrange
         Army army1 = new Army("Army1");
         Army army2 = new Army("Army2");
+
         //Act
         boolean testEquals = army1.equals(army2);
+
         //Assert
         assertFalse(testEquals);
     }
@@ -286,8 +327,10 @@ class ArmyTest {
         //Arrange
         Army army1 = new Army("Army1");
         Army army2 = new Army("Army1");
+
         //Act
         boolean testEquals = army1.equals(army2);
+
         //Assert
         assertTrue(testEquals);                                      
     }
@@ -296,7 +339,7 @@ class ArmyTest {
     void testHashCode() {
         //Arrange
         Army army = new Army("Army")  ;
-       //Act
+       //Assert
         assertNotNull(army.hashCode());
     }
 }
