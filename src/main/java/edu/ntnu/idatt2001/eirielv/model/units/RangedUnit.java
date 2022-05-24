@@ -1,7 +1,7 @@
-package edu.ntnu.idatt2001.eirielv.units;
+package edu.ntnu.idatt2001.eirielv.model.units;
 
-import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
-import edu.ntnu.idatt2001.eirielv.simulation.Unit;
+import edu.ntnu.idatt2001.eirielv.model.simulation.TerrainType;
+import edu.ntnu.idatt2001.eirielv.model.simulation.Unit;
 
 
 /**
