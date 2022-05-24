@@ -1,10 +1,11 @@
 package edu.ntnu.idatt2001.eirielv.controller;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 import edu.ntnu.idatt2001.eirielv.simulation.Army;
 import edu.ntnu.idatt2001.eirielv.simulation.ArmyFileHandling;
 import edu.ntnu.idatt2001.eirielv.simulation.Unit;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -12,11 +13,17 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.io.Reader;
 import java.nio.file.Files;
-import java.util.ResourceBundle;
+import java.nio.file.Path;
+import java.util.Objects;
 
-public class ArmiesController implements Initializable {
+/**
+ * ArmiesController is a controller for {@link SwitchScene} ArmiesPage.fxml. This class interactions with armies
+ * in the program
+ * @author Eirik Elvestad
+ */
+public class ArmiesController{
 
     @FXML
     private TableView<Unit> armiesTable1;
@@ -47,17 +54,21 @@ public class ArmiesController implements Initializable {
     @FXML
     private ListView<String> armiesList2;
 
-    /** Initialize the controller, and sets the tableview and listView for the scene
-     * @param url is the url represented by Url
-     * @param resourceBundle
+    /** Initialize the controller, and sets the tableview and listView for the scene. If there already exists armies
+     * in {@link Singleton}, it imports these armies and set their information in tableView and ListView
      */
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-       TableDecorator.initTable5Colum(armiesTable1);
-       TableDecorator.initTable5Colum(armiesTable2);
+    @FXML
+    public void initialize() {
+        TableDecorator.initTable5Colum(armiesTable1);
+        TableDecorator.initTable5Colum(armiesTable2);
        if(Singleton.getInstance().getArmy1() != null && Singleton.getInstance().getArmy2() != null){
            Army army1 = Singleton.getInstance().getArmy1();
            Army army2 = Singleton.getInstance().getArmy2();
+           TextFieldArmyName1.setText(army1.getName());
+           TextFieldArmyName2.setText(army2.getName());
+           textArmyName1.setText(army1.getName());
+           textArmyName2.setText(army2.getName());
+
            TableDecorator.fillTable(5, army1, armiesTable1);
            try {
                 TableDecorator.fillListView(army1, armiesList1);
@@ -73,42 +84,39 @@ public class ArmiesController implements Initializable {
        }
     }
 
-    @FXML
-    public void createNewArmy1(MouseEvent mouseEvent) throws IOException {
-        SwitchScene.createNewStage("CreateNewArmy1");
-    }
-
-    @FXML
-    public void createNewArmy2(MouseEvent mouseEvent) throws IOException {
-        SwitchScene.createNewStage("CreateNewArmy2");
-    }
-
-
     /**
-     * addUnits1 shows the view for adding a unit
-     * @param mouseEvent checks if the button "addUnit1" is bressed by the mouse
-     * @throws IOException
+     * createNewArmy switches sceen to {@link SwitchScene} CreateNewArmy.fxml
+     * @param mouseEvent checks if the button "newArmy" is clicked by the mouse
+     * @throws IOException if the new scene has invalid information
      */
     @FXML
-    public void addUnits1(MouseEvent mouseEvent) throws IOException {
-        SwitchScene.createNewStage("AddUnitsWindow1");
-
+    public void createNewArmy(MouseEvent mouseEvent) throws IOException {
+        SwitchScene.createNewStage("CreateNewArmy");
     }
 
     /**
-     * addUnits2 shows the view for adding a unit
-     * @param mouseEvent checks if the button "addUnit2" is bressed by the mouse
-     * @throws IOException
+     * addUnits shows the view for adding a unit {@link SwitchScene} AddUnitsWindow.fxml. If there is no set army,
+     * addUnits returns a AlertBox
+     * @param mouseEvent checks if the button "addUnit" is clicked by the mouse
+     * @throws IOException if the new scene has invalid information
      */
     @FXML
-    public void addUnits2(MouseEvent mouseEvent) throws IOException {
-        SwitchScene.createNewStage("AddUnitsWindow2");
+    public void addUnits(MouseEvent mouseEvent) throws IOException {
+        if(Objects.equals(Singleton.getInstance().getButton().getId(), "addUnits1")
+                && Singleton.getInstance().getArmy1() == null){
+            AlertBox.alertError("set \"Change army\" on left side to add a unit to this army");
+        }
+        else if(Objects.equals(Singleton.getInstance().getButton().getId(), "addUnits2")
+                && Singleton.getInstance().getArmy2() == null){
+            AlertBox.alertError("set \"Change army\" on right side to add a unit to this army");
+        }
+        else{SwitchScene.createNewStage("AddUnitsWindow");}
     }
 
     /**
-     * goToFrontPage takes the user to frontPage
+     * goToFrontPage takes the user to {@link SwitchScene} FrontPage.fxml
      * @param event checks if the button "goToFrontPage" is pressed by the mouse
-     * @throws IOException
+     * @throws IOException if the new scene has invalid information
      */
     @FXML
     public void goToFrontPage(MouseEvent event) throws IOException {
@@ -116,9 +124,10 @@ public class ArmiesController implements Initializable {
     }
 
     /**
-     * goToSimulationPage saves army1 and army2 and sends the user to simulation page.
-     * @param event checks if the button "Save" is bressed by the mouse
-     * @throws IOException
+     * goToSimulationPage saves army1 and army2 to {@link Singleton}, and sends the user to {@link SwitchScene} SimulationPage.fxml.
+     * If information is missing, it shows an alertbox.
+     * @param event checks if the button "Save" is clicked by the mouse
+     * @throws IOException if the new scene has invalid information
      */
     @FXML
     private void goToSimulationPage(MouseEvent event) throws IOException {
@@ -149,7 +158,6 @@ public class ArmiesController implements Initializable {
      */
     public void changeArmy1() throws IOException {
         if(TextFieldArmyName1.hasProperties()){
-            armiesTable1.refresh();
             ArmyFileHandling armyFileHandler = new ArmyFileHandling();
             Army csvArmy1;
 
@@ -160,7 +168,6 @@ public class ArmiesController implements Initializable {
                 return;
             }
             Singleton.getInstance().setArmy1(csvArmy1);
-
             TableDecorator.fillTable(5, csvArmy1, armiesTable1);
             TableDecorator.fillListView(csvArmy1, armiesList1);
             textArmyName1.setText(csvArmy1.getName());
@@ -198,23 +205,13 @@ public class ArmiesController implements Initializable {
                 "as the army");
     }
 
+
+
     /**
-     * This page imports chosen file to armyCSVfiles in resources
-     * @throws IOException
+     *saveArmies method gets information from Tableview, and makes an army of the tableview. Then it passes the information
+     * to Singleton, to further use it in simulation
      */
     @FXML
-    private void importFile() throws IOException {
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(null);
-        System.out.println("penis");
-        Files.copy(file.toPath(), new File("src/main/resources/edu/ntnu/idatt2001/eirielv/armycsvfiles").toPath());
-    }
-
-
-    /**
-     *This method gets information from Tableview, and makes an army of the tableview. Then it passes the information
-     * to Singleton to further use it in simulation
-     */
     private void saveArmies(){
         Army army1;
         Army army2;
@@ -231,5 +228,63 @@ public class ArmiesController implements Initializable {
         Singleton.getInstance().setArmy2(army2);
     }
 
-    //private void createNewArmy
+    /**
+     * importFile method imports chosen file to directory armyCSVfiles in resources, then imports army from the new csv and sets
+     * a new army in {@link Singleton}.
+     * @throws IOException if there is something wrong with the files
+     * @throws CsvValidationException if the csv file is damaged
+     */
+    @FXML
+    private void importFile() throws IOException, CsvValidationException {
+        ArmyFileHandling armyFileHandler = new ArmyFileHandling();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV","*.csv"));
+        File file = fileChooser.showOpenDialog(WargamesGUI.getStage());
+        try {
+            Files.move(file.toPath(), Path.of("src/main/resources/edu/ntnu/idatt2001/eirielv/armycsvfiles/copiedFile.csv"));
+        }catch (Exception e){
+            AlertBox.alertError("Ingen fil ble valgt");
+        }
+        Army army = armyFileHandler.getArmyFromCSVInput(renameCSV());
+        if(Objects.equals(Singleton.getInstance().getButton().getId(), "importArmy1")) {
+            Singleton.getInstance().setArmy1(army);
+            TableDecorator.fillTable(5, army, armiesTable1);
+            TableDecorator.fillListView(army, armiesList1);
+            textArmyName1.setText(army.getName());
+        }
+        else if(Objects.equals(Singleton.getInstance().getButton().getId(), "importArmy2")) {
+            Singleton.getInstance().setArmy2(army);
+            TableDecorator.fillTable(5, army, armiesTable2);
+            TableDecorator.fillListView(army, armiesList2);
+            textArmyName1.setText(army.getName());
+        }
+
+    }
+
+    /**
+     * renameCSV renames the imported file to armyname.
+     * @return armyName received from the imported csv
+     * @throws IOException if there is something wrong with the files
+     * @throws CsvValidationException if the csv file is damaged
+     */
+    private String renameCSV() throws IOException, CsvValidationException {
+
+        File file = new File("src/main/resources/edu/ntnu/idatt2001/eirielv/armycsvfiles/copiedFile.csv");
+        Reader reader = Files.newBufferedReader(Path.of(file.getAbsolutePath()));
+        CSVReader csvReader = new CSVReader(reader);
+        String armyName = String.valueOf(csvReader.readNext()[0]);
+        File rename = new File("src/main/resources/edu/ntnu/idatt2001/eirielv/armycsvfiles/" + armyName+".csv");
+        file.renameTo(rename);
+        return armyName;
+    }
+
+    /**
+     * setButton recieves an actionEvent, and gets the button source of the event, then stores the information about
+     * the last button pressed in ArmiesPage.fxml, and stores it in {@link Singleton}
+     * @param actionEvent is an event triggered when there is a event on a button
+     */
+    public void setButton(javafx.event.ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+        Singleton.getInstance().setButton(button);
+    }
 }
