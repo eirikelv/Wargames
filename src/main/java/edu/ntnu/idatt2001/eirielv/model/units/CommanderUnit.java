@@ -1,7 +1,7 @@
-package edu.ntnu.idatt2001.eirielv.units;
+package edu.ntnu.idatt2001.eirielv.model.units;
 
 
-import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
+import edu.ntnu.idatt2001.eirielv.model.simulation.TerrainType;
 
 /**
  * The CommanderUnit extends CavalryUnit, and uses the same bonuses ass the cavalry unit. The CommanderUnit class
@@ -9,11 +9,11 @@ import edu.ntnu.idatt2001.eirielv.simulation.TerrainType;
  * @author Eirik Elvestad
  */
 public class CommanderUnit extends CavalryUnit{
-    UnitType unitType;
     private int attackedCount = 0; // how many times the unit has been attacked
 
     /**
      * This is the constructor for the CommanderUnit class that defines how a commander unit should look and its variables
+     * The constructor also sets the UnitType to CommanderUnit
      * @param name   The String name is a short descriptive name of the commander unit
      * @param health The int health is a value that describes the commander unit's health
      * @param attack The int attack represents the commander units weapon
@@ -25,7 +25,8 @@ public class CommanderUnit extends CavalryUnit{
     }
 
     /**
-     *This is the construct for commander Unit with set variables attack = 25 and armor = 15. This constructor will be
+     * This is the construct for commander Unit with set variables attack = 25 and armor = 15. This constructor will be
+     * The constructor also sets the UnitType to CommanderUnit
      * used to call cavalry unit with set values attack and armor.
      * @param name Ths String name is a short descriptive name of the commander unit
      * @param health The int health is the value that describes the commander unit's health
@@ -40,6 +41,7 @@ public class CommanderUnit extends CavalryUnit{
      * The commander unit has an advantage because it has extra damage with first attack, and because of that, the
      * commander unit gets 6 in attack bonus with the first attack. After that the attack bonus equals 2
      * attack bonus to illustrate this
+     * CommanderUnit gets no benefit with terrainType
      * @return Returns the attack bonus to the commander unit
      */
     @Override
@@ -54,6 +56,7 @@ public class CommanderUnit extends CavalryUnit{
     /**
      *The method getResistBonus returns the resist bonus of the opponent getting attacked. The commander unit has a low
      * resistance bonus, to illustrate this the commanderunit gets 1 in resistance bonus
+     * CommanderUnit gets no benefit with terrainType
      * @return Returns the resistancebonus of the Commander
      */
     @Override
