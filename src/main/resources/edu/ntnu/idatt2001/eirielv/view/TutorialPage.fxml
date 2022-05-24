@@ -1,14 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.ntnu.idatt2001.eirielv.controller.TutorialController"
-            prefHeight="866" prefWidth="1300">
-
-</AnchorPane>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="866.0" prefWidth="1300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="edu.ntnu.idatt2001.eirielv.controller.TutorialController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #000000; -fx-border-width: 2;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="228.0" prefWidth="650.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Program flow">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox prefHeight="332.0" prefWidth="650.0">
+               <children>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" text="Program flow&#10;1. Armies page&#10;2. Add one army on the left side and on the right side&#10;3. Press save&#10;4.  Press run simulation in the upper left corner&#10;&#10;">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #000000; -fx-border-width: 2;" GridPane.columnIndex="1">
+         <children>
+            <VBox prefHeight="114.0" prefWidth="650.0" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ArmiesPage">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <TextArea prefHeight="298.0" prefWidth="650.0" text="Button&#10; - &quot;Main Menu&quot; ----------go to front page&#10; - &quot;Create new army&quot;: ----create a new army &#10; - &quot;Add units&quot;:  ---------- add units to the &quot;changed army&quot;&#10; - &quot;Change army&quot;:  ------ type in army name in the text field and press &quot;Change army&quot; &#10;                                                         └─ to get army from a existing csv in repo&#10; - &quot;Import new Armyfile&quot;: -select csvfile to import to The War Games&#10; - &quot;Save&quot;: ---------------saves the armies added to the armies page&#10;&#10;&#10;">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextArea>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #000000; -fx-border-width: 2;" GridPane.rowIndex="1">
+         <children>
+            <VBox alignment="CENTER" prefHeight="88.0" prefWidth="650.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Important to notice">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <TextArea prefHeight="236.0" prefWidth="650.0" text=" - Add Army before entring battle&#10; - The textfield in army page needs to contain the army name before entering battle&#10; - &#10;&#10;" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" />
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="72.0" prefWidth="149.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onMouseClicked="#goToFrontPage" prefHeight="65.0" prefWidth="135.0" text="MainPage" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="72.0" prefWidth="135.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #000000; -fx-border-width: 2;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Units Information">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox prefHeight="322.0" prefWidth="650.0">
+               <children>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" text="All units have their abilityes, and the terrain is a big part of their ability. &#10;&#10;Ranged unit -&gt;  attackbonus is stronger when terrain is Hill, and weaker when fighting in Forest&#10;&#10;Infantry unit -&gt; attackbonus and armorbonus is stronger when fighting in Forest&#10;&#10;Cavalry unit -&gt; attackbonus is tronger fighting on Plains, and armorbonus is weaker when fighting in Forest&#10;&#10;" wrapText="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #000000; -fx-border-width: 2;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BattlePage">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox prefHeight="313.0" prefWidth="650.0">
+               <children>
+                  <TextArea prefHeight="236.0" prefWidth="650.0" text="Program flow&#10;1. Armies page&#10;2. Add one army on the left side and on the right side&#10;3. Press save&#10;4.  Press run simulation in the upper left corner&#10; - press Reset to reset the stage of the battle page&#10;&#10;">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</GridPane>
